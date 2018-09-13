@@ -42,6 +42,7 @@
             this.tbMarkup1 = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbTextControlWidthUnits = new System.Windows.Forms.Label();
             this.chxStrikeout = new System.Windows.Forms.CheckBox();
             this.tbHyperlink = new System.Windows.Forms.TextBox();
             this.chxHyperlink = new System.Windows.Forms.CheckBox();
@@ -49,10 +50,10 @@
             this.tbMarkup3 = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay2 = new System.Windows.Forms.Button();
             this.btnParseMarkupAndDisplay3 = new System.Windows.Forms.Button();
-            this.lbTextControlWidthUnits = new System.Windows.Forms.Label();
             this.tbMarkup4 = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay4 = new System.Windows.Forms.Button();
             this.markupRichTextControl = new MarkupRichtextControl();
+            this.chxNewLine = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +72,7 @@
             // 
             this.tbNewText.Location = new System.Drawing.Point(43, 57);
             this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(221, 20);
+            this.tbNewText.Size = new System.Drawing.Size(171, 20);
             this.tbNewText.TabIndex = 6;
             this.tbNewText.Text = "test";
             // 
@@ -178,7 +179,8 @@
             this.tbMarkup1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbMarkup1.Size = new System.Drawing.Size(191, 125);
             this.tbMarkup1.TabIndex = 16;
-            this.tbMarkup1.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\ntest\r\ntesttest\r\ntesttesttest\r\n";
+            this.tbMarkup1.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\ntest\r\nwebsite [NoteFly](https://www.notef" +
+    "ly.org) \r\ntest\r\n";
             // 
             // btnParseMarkupAndDisplay1
             // 
@@ -192,13 +194,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chxItalic);
+            this.groupBox1.Controls.Add(this.chxNewLine);
             this.groupBox1.Controls.Add(this.lbTextControlWidthUnits);
             this.groupBox1.Controls.Add(this.chxStrikeout);
             this.groupBox1.Controls.Add(this.tbHyperlink);
             this.groupBox1.Controls.Add(this.chxHyperlink);
             this.groupBox1.Controls.Add(this.btnAddRichtext);
             this.groupBox1.Controls.Add(this.chxBold);
-            this.groupBox1.Controls.Add(this.chxItalic);
             this.groupBox1.Controls.Add(this.numUpDownWidthRichMarkupEditorControl);
             this.groupBox1.Controls.Add(this.chxUnderline);
             this.groupBox1.Controls.Add(this.lbTextControlWidth);
@@ -212,6 +215,15 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manual add rich text";
+            // 
+            // lbTextControlWidthUnits
+            // 
+            this.lbTextControlWidthUnits.AutoSize = true;
+            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(220, 26);
+            this.lbTextControlWidthUnits.Name = "lbTextControlWidthUnits";
+            this.lbTextControlWidthUnits.Size = new System.Drawing.Size(18, 13);
+            this.lbTextControlWidthUnits.TabIndex = 19;
+            this.lbTextControlWidthUnits.Text = "px";
             // 
             // chxStrikeout
             // 
@@ -262,7 +274,7 @@
             this.tbMarkup3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbMarkup3.Size = new System.Drawing.Size(214, 125);
             this.tbMarkup3.TabIndex = 20;
-            this.tbMarkup3.Text = "striketought test ~failed~ a ~monkey~!\r\n- item1\r\n- item2\r\n- item3\r\n";
+            this.tbMarkup3.Text = "strikethrough test ~failed~\r\nlist:\r\n- item1\r\n- item2\r\n- item3\r\n";
             // 
             // btnParseMarkupAndDisplay2
             // 
@@ -283,15 +295,6 @@
             this.btnParseMarkupAndDisplay3.Text = "Parse markup and display rich text";
             this.btnParseMarkupAndDisplay3.UseVisualStyleBackColor = true;
             this.btnParseMarkupAndDisplay3.Click += new System.EventHandler(this.btnParseMarkupAndDisplay3_Click);
-            // 
-            // lbTextControlWidthUnits
-            // 
-            this.lbTextControlWidthUnits.AutoSize = true;
-            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(220, 26);
-            this.lbTextControlWidthUnits.Name = "lbTextControlWidthUnits";
-            this.lbTextControlWidthUnits.Size = new System.Drawing.Size(18, 13);
-            this.lbTextControlWidthUnits.TabIndex = 19;
-            this.lbTextControlWidthUnits.Text = "px";
             // 
             // tbMarkup4
             // 
@@ -321,6 +324,16 @@
             this.markupRichTextControl.Name = "markupRichTextControl";
             this.markupRichTextControl.Size = new System.Drawing.Size(400, 297);
             this.markupRichTextControl.TabIndex = 4;
+            // 
+            // chxNewLine
+            // 
+            this.chxNewLine.AutoSize = true;
+            this.chxNewLine.Location = new System.Drawing.Point(220, 61);
+            this.chxNewLine.Name = "chxNewLine";
+            this.chxNewLine.Size = new System.Drawing.Size(68, 17);
+            this.chxNewLine.TabIndex = 20;
+            this.chxNewLine.Text = "NewLine";
+            this.chxNewLine.UseVisualStyleBackColor = true;
             // 
             // FrmMainTest
             // 
@@ -373,6 +386,7 @@
         private System.Windows.Forms.Label lbTextControlWidthUnits;
         private System.Windows.Forms.TextBox tbMarkup4;
         private System.Windows.Forms.Button btnParseMarkupAndDisplay4;
+        private System.Windows.Forms.CheckBox chxNewLine;
     }
 }
 

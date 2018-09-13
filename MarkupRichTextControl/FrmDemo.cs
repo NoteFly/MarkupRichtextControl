@@ -25,6 +25,11 @@ namespace TestMarkupRichTextControl
         {
             SolidBrush textcolor = new SolidBrush(this.pnlSelectTextColor.BackColor);
             RichTextPart richtextpartFS12 = new RichTextPart(this.tbNewText.Text, "arial", 12, textcolor, (FontStyle)this.getTextStylesValue());
+            if (this.chxNewLine.Checked)
+            {
+                richtextpartFS12.AppendNewLine = true;
+            }
+
             if (this.chxHyperlink.Checked)
             {
                 richtextpartFS12.Href = this.tbHyperlink.Text;
