@@ -12,23 +12,25 @@ namespace TestMarkupRichTextControl
 {
     public partial class FrmMainTest : Form
     {
+        private MarkupToRichtextParser markupparser;
 
         public FrmMainTest()
         {
             InitializeComponent();
             numUpDownWidthRichMarkupEditorControl.Value = Convert.ToDecimal(this.markupRichTextControl.Width);
+            this.markupparser = new MarkupToRichtextParser(this.markupRichTextControl);
         }
 
         private void btnAddRichtext_Click(object sender, EventArgs e)
         {
             SolidBrush textcolor = new SolidBrush(this.pnlSelectTextColor.BackColor);
-            RichTextPart richtextpartFS14 = new RichTextPart(this.tbNewText.Text, "arial", 12, textcolor, (FontStyle)this.getTextStylesValue());
+            RichTextPart richtextpartFS12 = new RichTextPart(this.tbNewText.Text, "arial", 12, textcolor, (FontStyle)this.getTextStylesValue());
             if (this.chxHyperlink.Checked)
             {
-                richtextpartFS14.Href = this.tbHyperlink.Text;
+                richtextpartFS12.Href = this.tbHyperlink.Text;
             }
 
-            this.markupRichTextControl.appendText(richtextpartFS14);
+            this.markupRichTextControl.appendText(richtextpartFS12);
             this.Refresh();
         }
 
@@ -76,13 +78,6 @@ namespace TestMarkupRichTextControl
             this.markupRichTextControl.Refresh();
         }
 
-        private void btnParseMarkupAndDisplay_Click(object sender, EventArgs e)
-        {
-            this.markupRichTextControl.Clear();
-            MarkupToRichtextParser markupparser = new MarkupToRichtextParser(this.markupRichTextControl);
-            markupparser.ParseMarkup(this.tbMarkup.Text);
-        }
-
         private void chxHyperlink_CheckedChanged(object sender, EventArgs e)
         {
             this.tbHyperlink.Enabled = this.chxHyperlink.Checked;
@@ -94,6 +89,30 @@ namespace TestMarkupRichTextControl
             {
                 this.chxUnderline.Checked = false;
             }
+        }
+
+        private void btnParseMarkupAndDisplay_Click(object sender, EventArgs e)
+        {
+            this.markupRichTextControl.Clear();
+            this.markupparser.ParseMarkup(this.tbMarkup1.Text);
+        }
+
+        private void btnParseMarkupAndDisplay2_Click(object sender, EventArgs e)
+        {
+            this.markupRichTextControl.Clear();
+            this.markupparser.ParseMarkup(this.tbMarkup2.Text);
+        }
+
+        private void btnParseMarkupAndDisplay3_Click(object sender, EventArgs e)
+        {
+            this.markupRichTextControl.Clear();
+            this.markupparser.ParseMarkup(this.tbMarkup3.Text);
+        }
+
+        private void btnParseMarkupAndDisplay4_Click(object sender, EventArgs e)
+        {
+            this.markupRichTextControl.Clear();
+            this.markupparser.ParseMarkup(this.tbMarkup4.Text);
         }
     }
 }
