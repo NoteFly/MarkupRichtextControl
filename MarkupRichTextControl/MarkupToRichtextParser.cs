@@ -9,6 +9,7 @@ public class MarkupToken
         this.CharLeft = '\0';
         this.CharRight = '\0';
         this.Level = 0;
+        this.Levelclosed = 0;
         this.Nomarkup = false;
         this.TextLeftPosition = Int32.MaxValue;
         this.Text = null;
@@ -18,6 +19,7 @@ public class MarkupToken
     public char CharLeft { get; set; }
     public char CharRight { get; set; }
     public int Level { get; set; }
+    public int Levelclosed { get; set; }
     public int TextLeftPosition { get; set; }
     public bool Nomarkup { get; set; }
     public string Text { get; set; }
@@ -54,9 +56,15 @@ public class MarkupTokenizer {
         for (int i = 0; i < this.markup.Length; i++)
         {
             char chr = this.markup[i];
-            if (chr == '\r' || chr == '\n')
+            if (chr == '\r' || chr == '\n' || i == this.markup.Length -1)
             {
                 int textlength = i - markuptoken.TextLeftPosition;
+                if (i == this.markup.Length - 1)
+                {
+                    // Include chr on last character of markup as no new line characters can be excepted.
+                    textlength += 1;
+                }
+
                 if (markuptoken.CharLeft == '#' || markuptoken.CharLeft == '-')
                 {
                     // do not need closing tag(head) or closing tag forbidden(list/line)                    
@@ -74,6 +82,22 @@ public class MarkupTokenizer {
                     markuptoken.CharLeft = '\0';
                     markuptoken.TextLeftPosition = i + 1;
                     markuptoken.Nomarkup = false;
+                }
+                else if (textlength > 0 && !markuptoken.Nomarkup)
+                {
+                    if (markuptoken.Level > 0 && markuptoken.Levelclosed < markuptoken.Level)
+                    {
+                        markuptoken.Levelclosed += 1;
+                    }
+                    else
+                    {
+                        markuptoken.CharRight = chr;
+                        textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
+                        String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
+                        markuptoken.Text = text;
+                        this.markuptokens.Add(markuptoken);
+                        markuptoken = new MarkupToken();
+                    }
                 }
             }
             else if (chr == '_' || chr == '*' || chr == '#' || chr == '-' || chr == '~' || chr == '`' ||
@@ -101,19 +125,26 @@ public class MarkupTokenizer {
                 }
                 else
                 {
-                    markuptoken.CharRight = chr;
-                    int textlength = i - markuptoken.TextLeftPosition;
-                    String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
-                    if (chr == '#')
+                    if (markuptoken.Level > 0 && markuptoken.Levelclosed < markuptoken.Level)
                     {
-                        text = text.Trim();
+                        markuptoken.Levelclosed += 1;
                     }
+                    else
+                    {
+                        markuptoken.CharRight = chr;
+                        int textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
+                        String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
+                        // Remove leading and ending space from headings
+                        if (chr == '#')
+                        {
+                            text = text.Trim();
+                        }
 
-                    markuptoken.Text = text;
-                    
-                    this.markuptokens.Add(markuptoken);
-                    markuptoken = new MarkupToken();
-                }
+                        markuptoken.Text = text;
+                        this.markuptokens.Add(markuptoken);
+                        markuptoken = new MarkupToken();
+                    }
+                 }
             }
             else if (markuptoken.TextLeftPosition == 0 || markuptoken.CharLeft == '\0')
             {
@@ -136,10 +167,10 @@ partial class MarkupToRichtextParser
 
     private MarkupRichtextControl markuptextcontrol;
 
-	public MarkupToRichtextParser(MarkupRichtextControl markuptextcontrol)
-	{
+    public MarkupToRichtextParser(MarkupRichtextControl markuptextcontrol)
+    {
         this.markuptextcontrol = markuptextcontrol;
-	}
+    }
 
     /// <summary>
     /// Parse the markup to RichTextParts and add them to the markuptextcontrol.

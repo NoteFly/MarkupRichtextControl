@@ -42,6 +42,7 @@
             this.tbMarkup1 = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chxNewLine = new System.Windows.Forms.CheckBox();
             this.lbTextControlWidthUnits = new System.Windows.Forms.Label();
             this.chxStrikeout = new System.Windows.Forms.CheckBox();
             this.tbHyperlink = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.tbMarkup4 = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay4 = new System.Windows.Forms.Button();
             this.markupRichTextControl = new MarkupRichtextControl();
-            this.chxNewLine = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -155,7 +155,7 @@
             0,
             0});
             this.numUpDownWidthRichMarkupEditorControl.Minimum = new decimal(new int[] {
-            10,
+            64,
             0,
             0,
             0});
@@ -179,8 +179,9 @@
             this.tbMarkup1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbMarkup1.Size = new System.Drawing.Size(191, 125);
             this.tbMarkup1.TabIndex = 16;
-            this.tbMarkup1.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\ntest\r\nwebsite [NoteFly](https://www.notef" +
-    "ly.org) \r\ntest\r\n";
+            this.tbMarkup1.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\nhyperlinktest\r\n[Github page control](http" +
+    "s://github.com/NoteFly/MarkupRichtextControl) \r\nNoteFly [website](https://www.no" +
+    "tefly.org)\r\n";
             // 
             // btnParseMarkupAndDisplay1
             // 
@@ -214,7 +215,17 @@
             this.groupBox1.Size = new System.Drawing.Size(602, 91);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Manual add rich text";
+            this.groupBox1.Text = "Manually add rich text part";
+            // 
+            // chxNewLine
+            // 
+            this.chxNewLine.AutoSize = true;
+            this.chxNewLine.Location = new System.Drawing.Point(220, 61);
+            this.chxNewLine.Name = "chxNewLine";
+            this.chxNewLine.Size = new System.Drawing.Size(68, 17);
+            this.chxNewLine.TabIndex = 20;
+            this.chxNewLine.Text = "NewLine";
+            this.chxNewLine.UseVisualStyleBackColor = true;
             // 
             // lbTextControlWidthUnits
             // 
@@ -305,7 +316,7 @@
             this.tbMarkup4.Size = new System.Drawing.Size(196, 125);
             this.tbMarkup4.TabIndex = 23;
             this.tbMarkup4.Text = "plaintext1 *italic1* plaintext2 _italic2_ plaintext3 **bold1** plaintext4 __bold2" +
-    "__";
+    "__ plaintext5\r\n***bolditalic1*** plaintext6 ___bolditalic2___ plaintext7";
             // 
             // btnParseMarkupAndDisplay4
             // 
@@ -325,16 +336,6 @@
             this.markupRichTextControl.Size = new System.Drawing.Size(400, 297);
             this.markupRichTextControl.TabIndex = 4;
             // 
-            // chxNewLine
-            // 
-            this.chxNewLine.AutoSize = true;
-            this.chxNewLine.Location = new System.Drawing.Point(220, 61);
-            this.chxNewLine.Name = "chxNewLine";
-            this.chxNewLine.Size = new System.Drawing.Size(68, 17);
-            this.chxNewLine.TabIndex = 20;
-            this.chxNewLine.Text = "NewLine";
-            this.chxNewLine.UseVisualStyleBackColor = true;
-            // 
             // FrmMainTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,7 +352,7 @@
             this.Controls.Add(this.tbMarkup1);
             this.Controls.Add(this.markupRichTextControl);
             this.Name = "FrmMainTest";
-            this.Text = "NoteFly testing MarkupRichTextControl";
+            this.Text = "Testing of MarkupRichTextControl";
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
