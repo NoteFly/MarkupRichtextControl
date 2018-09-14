@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-class HyperlinkClickablePart
-{
-    public Point location { get; set; }
-    public int width { get; set; }
-    public int height { get; set; }
-    public RichTextPart richtextpart { set; get; }
-}
-
 internal partial class MarkupRichtextControl : UserControl
 {
     private List<RichTextPart> richtextparts = new List<RichTextPart>();
@@ -206,3 +198,4 @@ internal partial class MarkupRichtextControl : UserControl
         this.ResumeLayout(false);
     }
 }
+

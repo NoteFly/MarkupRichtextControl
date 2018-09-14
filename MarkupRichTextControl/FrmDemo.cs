@@ -17,8 +17,8 @@ namespace TestMarkupRichTextControl
         public FrmMainTest()
         {
             InitializeComponent();
-            numUpDownWidthRichMarkupEditorControl.Value = Convert.ToDecimal(this.markupRichTextControl.Width);
-            this.markupparser = new MarkupToRichtextParser(this.markupRichTextControl);
+            this.numUpDownWidthRichMarkupEditorControl.Value = Convert.ToDecimal(this.markupRichtextControl.Width);
+            this.markupparser = new MarkupToRichtextParser(this.markupRichtextControl);
         }
 
         private void btnAddRichtext_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace TestMarkupRichTextControl
                 richtextpartFS12.Href = this.tbHyperlink.Text;
             }
 
-            this.markupRichTextControl.appendText(richtextpartFS12);
+            this.markupRichtextControl.appendText(richtextpartFS12);
             this.Refresh();
         }
 
@@ -75,12 +75,12 @@ namespace TestMarkupRichTextControl
 
         private void numUpDownWidthRichMarkupEditorControl_ValueChanged(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Width = Convert.ToInt32(this.numUpDownWidthRichMarkupEditorControl.Value);
+            this.markupRichtextControl.Width = Convert.ToInt32(this.numUpDownWidthRichMarkupEditorControl.Value);
         }
 
         private void numUpDownWidthRichMarkupEditorControl_Leave(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Refresh();
+            this.markupRichtextControl.Refresh();
         }
 
         private void chxHyperlink_CheckedChanged(object sender, EventArgs e)
@@ -98,26 +98,36 @@ namespace TestMarkupRichTextControl
 
         private void btnParseMarkupAndDisplay_Click(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Clear();
-            this.markupparser.ParseMarkup(this.tbMarkup1.Text);
+            this.markupRichtextControl.Clear();
+            this.markupparser.ParseMarkup(this.tbMarkup.Text);
         }
 
-        private void btnParseMarkupAndDisplay2_Click(object sender, EventArgs e)
+        private void btnLoadMarkupTest1_Click(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Clear();
-            this.markupparser.ParseMarkup(this.tbMarkup2.Text);
+            this.tbMarkup.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\nTest: [Github page](https://github.com/NoteFly/MarkupRichtextControl) hyperlink.\r\n";
         }
 
-        private void btnParseMarkupAndDisplay3_Click(object sender, EventArgs e)
+        private void btnLoadMarkupTest2_Click(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Clear();
-            this.markupparser.ParseMarkup(this.tbMarkup3.Text);
+            this.tbMarkup.Text = "# head1\r\n## head2\r\n## head2 with closing##\r\n### head3\r\n#### head4 \r\nSome plaintext before head5.\r\n##### head5\r\n";
         }
 
-        private void btnParseMarkupAndDisplay4_Click(object sender, EventArgs e)
+        private void btnLoadMarkupTest3_Click(object sender, EventArgs e)
         {
-            this.markupRichTextControl.Clear();
-            this.markupparser.ParseMarkup(this.tbMarkup4.Text);
+            this.tbMarkup.Text = "plaintext1 *italic1* plaintext2 _italic2_\r\n" +
+                "plaintext3 **bold1** plaintext4 __bold2__\r\n" +
+                "plaintext5 ***bolditalic1*** plaintext6 ___bolditalic2___\r\n" +
+                "plaintext7 *_bold3_*";
+        }
+
+        private void btnLoadMarkupTest4_Click(object sender, EventArgs e)
+        {
+            this.tbMarkup.Text = "list:\r\n- item1\r\n- item2\r\n- item3\r\n";
+        }
+
+        private void btnLoadMarkupTest5_Click(object sender, EventArgs e)
+        {
+            this.tbMarkup.Text = "strikethrough test ~failed~\r\n";
         }
     }
 }

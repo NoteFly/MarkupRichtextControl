@@ -55,6 +55,7 @@
     <Compile Include="FrmDemo.Designer.cs">
       <DependentUpon>FrmDemo.cs</DependentUpon>
     </Compile>
+    <Compile Include="HyperlinkClickablePart.cs" />
     <Compile Include="MarkupRichtextControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

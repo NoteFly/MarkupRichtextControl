@@ -39,30 +39,30 @@
             this.chxUnderline = new System.Windows.Forms.CheckBox();
             this.lbTextControlWidth = new System.Windows.Forms.Label();
             this.numUpDownWidthRichMarkupEditorControl = new System.Windows.Forms.NumericUpDown();
-            this.tbMarkup1 = new System.Windows.Forms.TextBox();
+            this.tbMarkup = new System.Windows.Forms.TextBox();
             this.btnParseMarkupAndDisplay1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chxNewLine = new System.Windows.Forms.CheckBox();
-            this.lbTextControlWidthUnits = new System.Windows.Forms.Label();
             this.chxStrikeout = new System.Windows.Forms.CheckBox();
             this.tbHyperlink = new System.Windows.Forms.TextBox();
             this.chxHyperlink = new System.Windows.Forms.CheckBox();
-            this.tbMarkup2 = new System.Windows.Forms.TextBox();
-            this.tbMarkup3 = new System.Windows.Forms.TextBox();
-            this.btnParseMarkupAndDisplay2 = new System.Windows.Forms.Button();
-            this.btnParseMarkupAndDisplay3 = new System.Windows.Forms.Button();
-            this.tbMarkup4 = new System.Windows.Forms.TextBox();
-            this.btnParseMarkupAndDisplay4 = new System.Windows.Forms.Button();
-            this.markupRichTextControl = new MarkupRichtextControl();
+            this.lbTextControlWidthUnits = new System.Windows.Forms.Label();
+            this.btnLoadMarkupTest1 = new System.Windows.Forms.Button();
+            this.lblTextLoadMarkupTest = new System.Windows.Forms.Label();
+            this.btnLoadMarkupTest2 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest3 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest4 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest5 = new System.Windows.Forms.Button();
+            this.markupRichtextControl = new MarkupRichtextControl();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddRichtext
             // 
-            this.btnAddRichtext.Location = new System.Drawing.Point(497, 42);
+            this.btnAddRichtext.Location = new System.Drawing.Point(718, 24);
             this.btnAddRichtext.Name = "btnAddRichtext";
-            this.btnAddRichtext.Size = new System.Drawing.Size(98, 48);
+            this.btnAddRichtext.Size = new System.Drawing.Size(103, 48);
             this.btnAddRichtext.TabIndex = 5;
             this.btnAddRichtext.Text = "Add rich text";
             this.btnAddRichtext.UseVisualStyleBackColor = true;
@@ -70,16 +70,15 @@
             // 
             // tbNewText
             // 
-            this.tbNewText.Location = new System.Drawing.Point(43, 57);
+            this.tbNewText.Location = new System.Drawing.Point(38, 24);
             this.tbNewText.Name = "tbNewText";
-            this.tbNewText.Size = new System.Drawing.Size(171, 20);
+            this.tbNewText.Size = new System.Drawing.Size(328, 20);
             this.tbNewText.TabIndex = 6;
-            this.tbNewText.Text = "test";
             // 
             // lbTextText
             // 
             this.lbTextText.AutoSize = true;
-            this.lbTextText.Location = new System.Drawing.Point(6, 60);
+            this.lbTextText.Location = new System.Drawing.Point(6, 27);
             this.lbTextText.Name = "lbTextText";
             this.lbTextText.Size = new System.Drawing.Size(31, 13);
             this.lbTextText.TabIndex = 7;
@@ -88,29 +87,29 @@
             // lblTextColor
             // 
             this.lblTextColor.AutoSize = true;
-            this.lblTextColor.Location = new System.Drawing.Point(419, 65);
+            this.lblTextColor.Location = new System.Drawing.Point(605, 37);
             this.lblTextColor.Name = "lblTextColor";
-            this.lblTextColor.Size = new System.Drawing.Size(34, 13);
+            this.lblTextColor.Size = new System.Drawing.Size(57, 13);
             this.lblTextColor.TabIndex = 9;
-            this.lblTextColor.Text = "Color:";
+            this.lblTextColor.Text = "Text color:";
             // 
             // pnlSelectTextColor
             // 
-            this.pnlSelectTextColor.BackColor = System.Drawing.Color.Red;
+            this.pnlSelectTextColor.BackColor = System.Drawing.Color.Black;
             this.pnlSelectTextColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnlSelectTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSelectTextColor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlSelectTextColor.ForeColor = System.Drawing.Color.Black;
-            this.pnlSelectTextColor.Location = new System.Drawing.Point(459, 48);
+            this.pnlSelectTextColor.Location = new System.Drawing.Point(668, 26);
             this.pnlSelectTextColor.Name = "pnlSelectTextColor";
-            this.pnlSelectTextColor.Size = new System.Drawing.Size(32, 32);
+            this.pnlSelectTextColor.Size = new System.Drawing.Size(44, 41);
             this.pnlSelectTextColor.TabIndex = 10;
             this.pnlSelectTextColor.Click += new System.EventHandler(this.pnlSelectTextColor_Click);
             // 
             // chxBold
             // 
             this.chxBold.AutoSize = true;
-            this.chxBold.Location = new System.Drawing.Point(285, 45);
+            this.chxBold.Location = new System.Drawing.Point(552, 27);
             this.chxBold.Name = "chxBold";
             this.chxBold.Size = new System.Drawing.Size(47, 17);
             this.chxBold.TabIndex = 11;
@@ -120,7 +119,7 @@
             // chxItalic
             // 
             this.chxItalic.AutoSize = true;
-            this.chxItalic.Location = new System.Drawing.Point(285, 63);
+            this.chxItalic.Location = new System.Drawing.Point(552, 51);
             this.chxItalic.Name = "chxItalic";
             this.chxItalic.Size = new System.Drawing.Size(48, 17);
             this.chxItalic.TabIndex = 12;
@@ -130,7 +129,7 @@
             // chxUnderline
             // 
             this.chxUnderline.AutoSize = true;
-            this.chxUnderline.Location = new System.Drawing.Point(339, 63);
+            this.chxUnderline.Location = new System.Drawing.Point(464, 51);
             this.chxUnderline.Name = "chxUnderline";
             this.chxUnderline.Size = new System.Drawing.Size(71, 17);
             this.chxUnderline.TabIndex = 13;
@@ -140,7 +139,7 @@
             // lbTextControlWidth
             // 
             this.lbTextControlWidth.AutoSize = true;
-            this.lbTextControlWidth.Location = new System.Drawing.Point(6, 26);
+            this.lbTextControlWidth.Location = new System.Drawing.Point(99, 482);
             this.lbTextControlWidth.Name = "lbTextControlWidth";
             this.lbTextControlWidth.Size = new System.Drawing.Size(146, 13);
             this.lbTextControlWidth.TabIndex = 14;
@@ -148,7 +147,7 @@
             // 
             // numUpDownWidthRichMarkupEditorControl
             // 
-            this.numUpDownWidthRichMarkupEditorControl.Location = new System.Drawing.Point(168, 24);
+            this.numUpDownWidthRichMarkupEditorControl.Location = new System.Drawing.Point(251, 479);
             this.numUpDownWidthRichMarkupEditorControl.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -171,23 +170,20 @@
             this.numUpDownWidthRichMarkupEditorControl.ValueChanged += new System.EventHandler(this.numUpDownWidthRichMarkupEditorControl_ValueChanged);
             this.numUpDownWidthRichMarkupEditorControl.Leave += new System.EventHandler(this.numUpDownWidthRichMarkupEditorControl_Leave);
             // 
-            // tbMarkup1
+            // tbMarkup
             // 
-            this.tbMarkup1.Location = new System.Drawing.Point(16, 412);
-            this.tbMarkup1.Multiline = true;
-            this.tbMarkup1.Name = "tbMarkup1";
-            this.tbMarkup1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMarkup1.Size = new System.Drawing.Size(191, 125);
-            this.tbMarkup1.TabIndex = 16;
-            this.tbMarkup1.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\nhyperlinktest\r\n[Github page control](http" +
-    "s://github.com/NoteFly/MarkupRichtextControl) \r\nNoteFly [website](https://www.no" +
-    "tefly.org)\r\n";
+            this.tbMarkup.Location = new System.Drawing.Point(12, 42);
+            this.tbMarkup.Multiline = true;
+            this.tbMarkup.Name = "tbMarkup";
+            this.tbMarkup.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbMarkup.Size = new System.Drawing.Size(325, 385);
+            this.tbMarkup.TabIndex = 16;
             // 
             // btnParseMarkupAndDisplay1
             // 
-            this.btnParseMarkupAndDisplay1.Location = new System.Drawing.Point(12, 543);
+            this.btnParseMarkupAndDisplay1.Location = new System.Drawing.Point(12, 433);
             this.btnParseMarkupAndDisplay1.Name = "btnParseMarkupAndDisplay1";
-            this.btnParseMarkupAndDisplay1.Size = new System.Drawing.Size(195, 40);
+            this.btnParseMarkupAndDisplay1.Size = new System.Drawing.Size(325, 40);
             this.btnParseMarkupAndDisplay1.TabIndex = 17;
             this.btnParseMarkupAndDisplay1.Text = "Parse markup and display rich text";
             this.btnParseMarkupAndDisplay1.UseVisualStyleBackColor = true;
@@ -197,22 +193,19 @@
             // 
             this.groupBox1.Controls.Add(this.chxItalic);
             this.groupBox1.Controls.Add(this.chxNewLine);
-            this.groupBox1.Controls.Add(this.lbTextControlWidthUnits);
             this.groupBox1.Controls.Add(this.chxStrikeout);
             this.groupBox1.Controls.Add(this.tbHyperlink);
             this.groupBox1.Controls.Add(this.chxHyperlink);
             this.groupBox1.Controls.Add(this.btnAddRichtext);
             this.groupBox1.Controls.Add(this.chxBold);
-            this.groupBox1.Controls.Add(this.numUpDownWidthRichMarkupEditorControl);
             this.groupBox1.Controls.Add(this.chxUnderline);
-            this.groupBox1.Controls.Add(this.lbTextControlWidth);
             this.groupBox1.Controls.Add(this.pnlSelectTextColor);
             this.groupBox1.Controls.Add(this.lbTextText);
             this.groupBox1.Controls.Add(this.lblTextColor);
             this.groupBox1.Controls.Add(this.tbNewText);
-            this.groupBox1.Location = new System.Drawing.Point(12, 315);
+            this.groupBox1.Location = new System.Drawing.Point(12, 512);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(602, 91);
+            this.groupBox1.Size = new System.Drawing.Size(827, 75);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Manually add rich text part";
@@ -220,26 +213,17 @@
             // chxNewLine
             // 
             this.chxNewLine.AutoSize = true;
-            this.chxNewLine.Location = new System.Drawing.Point(220, 61);
+            this.chxNewLine.Location = new System.Drawing.Point(372, 26);
             this.chxNewLine.Name = "chxNewLine";
-            this.chxNewLine.Size = new System.Drawing.Size(68, 17);
+            this.chxNewLine.Size = new System.Drawing.Size(86, 17);
             this.chxNewLine.TabIndex = 20;
-            this.chxNewLine.Text = "NewLine";
+            this.chxNewLine.Text = "add new line";
             this.chxNewLine.UseVisualStyleBackColor = true;
-            // 
-            // lbTextControlWidthUnits
-            // 
-            this.lbTextControlWidthUnits.AutoSize = true;
-            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(220, 26);
-            this.lbTextControlWidthUnits.Name = "lbTextControlWidthUnits";
-            this.lbTextControlWidthUnits.Size = new System.Drawing.Size(18, 13);
-            this.lbTextControlWidthUnits.TabIndex = 19;
-            this.lbTextControlWidthUnits.Text = "px";
             // 
             // chxStrikeout
             // 
             this.chxStrikeout.AutoSize = true;
-            this.chxStrikeout.Location = new System.Drawing.Point(339, 45);
+            this.chxStrikeout.Location = new System.Drawing.Point(464, 27);
             this.chxStrikeout.Name = "chxStrikeout";
             this.chxStrikeout.Size = new System.Drawing.Size(87, 17);
             this.chxStrikeout.TabIndex = 18;
@@ -249,110 +233,119 @@
             // tbHyperlink
             // 
             this.tbHyperlink.Enabled = false;
-            this.tbHyperlink.Location = new System.Drawing.Point(373, 16);
+            this.tbHyperlink.Location = new System.Drawing.Point(130, 49);
             this.tbHyperlink.Name = "tbHyperlink";
-            this.tbHyperlink.Size = new System.Drawing.Size(222, 20);
+            this.tbHyperlink.Size = new System.Drawing.Size(328, 20);
             this.tbHyperlink.TabIndex = 17;
-            this.tbHyperlink.Text = "https://github.com/NoteFly/MarkupRichtextControl";
+            this.tbHyperlink.Text = "https://";
             // 
             // chxHyperlink
             // 
             this.chxHyperlink.AutoSize = true;
-            this.chxHyperlink.Location = new System.Drawing.Point(285, 19);
+            this.chxHyperlink.Location = new System.Drawing.Point(9, 51);
             this.chxHyperlink.Name = "chxHyperlink";
-            this.chxHyperlink.Size = new System.Drawing.Size(87, 17);
+            this.chxHyperlink.Size = new System.Drawing.Size(118, 17);
             this.chxHyperlink.TabIndex = 16;
-            this.chxHyperlink.Text = "Hyperlink url:";
+            this.chxHyperlink.Text = "Make hyperlink, url:";
             this.chxHyperlink.UseVisualStyleBackColor = true;
             this.chxHyperlink.CheckedChanged += new System.EventHandler(this.chxHyperlink_CheckedChanged);
             // 
-            // tbMarkup2
+            // lbTextControlWidthUnits
             // 
-            this.tbMarkup2.Location = new System.Drawing.Point(213, 412);
-            this.tbMarkup2.Multiline = true;
-            this.tbMarkup2.Name = "tbMarkup2";
-            this.tbMarkup2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMarkup2.Size = new System.Drawing.Size(199, 125);
-            this.tbMarkup2.TabIndex = 19;
-            this.tbMarkup2.Text = "# head1\r\n## head2\r\n## head2 with closing##\r\n### head3\r\n#### head4 \r\nSome plaintex" +
-    "t before head5.\r\n##### head5\r\n";
+            this.lbTextControlWidthUnits.AutoSize = true;
+            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(303, 482);
+            this.lbTextControlWidthUnits.Name = "lbTextControlWidthUnits";
+            this.lbTextControlWidthUnits.Size = new System.Drawing.Size(18, 13);
+            this.lbTextControlWidthUnits.TabIndex = 19;
+            this.lbTextControlWidthUnits.Text = "px";
             // 
-            // tbMarkup3
+            // btnLoadMarkupTest1
             // 
-            this.tbMarkup3.Location = new System.Drawing.Point(418, 412);
-            this.tbMarkup3.Multiline = true;
-            this.tbMarkup3.Name = "tbMarkup3";
-            this.tbMarkup3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMarkup3.Size = new System.Drawing.Size(214, 125);
-            this.tbMarkup3.TabIndex = 20;
-            this.tbMarkup3.Text = "strikethrough test ~failed~\r\nlist:\r\n- item1\r\n- item2\r\n- item3\r\n";
+            this.btnLoadMarkupTest1.Location = new System.Drawing.Point(100, 12);
+            this.btnLoadMarkupTest1.Name = "btnLoadMarkupTest1";
+            this.btnLoadMarkupTest1.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest1.TabIndex = 19;
+            this.btnLoadMarkupTest1.Text = "#1";
+            this.btnLoadMarkupTest1.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest1.Click += new System.EventHandler(this.btnLoadMarkupTest1_Click);
             // 
-            // btnParseMarkupAndDisplay2
+            // lblTextLoadMarkupTest
             // 
-            this.btnParseMarkupAndDisplay2.Location = new System.Drawing.Point(213, 543);
-            this.btnParseMarkupAndDisplay2.Name = "btnParseMarkupAndDisplay2";
-            this.btnParseMarkupAndDisplay2.Size = new System.Drawing.Size(199, 40);
-            this.btnParseMarkupAndDisplay2.TabIndex = 21;
-            this.btnParseMarkupAndDisplay2.Text = "Parse markup and display rich text";
-            this.btnParseMarkupAndDisplay2.UseVisualStyleBackColor = true;
-            this.btnParseMarkupAndDisplay2.Click += new System.EventHandler(this.btnParseMarkupAndDisplay2_Click);
+            this.lblTextLoadMarkupTest.AutoSize = true;
+            this.lblTextLoadMarkupTest.Location = new System.Drawing.Point(9, 17);
+            this.lblTextLoadMarkupTest.Name = "lblTextLoadMarkupTest";
+            this.lblTextLoadMarkupTest.Size = new System.Drawing.Size(92, 13);
+            this.lblTextLoadMarkupTest.TabIndex = 20;
+            this.lblTextLoadMarkupTest.Text = "Load markup test:";
             // 
-            // btnParseMarkupAndDisplay3
+            // btnLoadMarkupTest2
             // 
-            this.btnParseMarkupAndDisplay3.Location = new System.Drawing.Point(418, 543);
-            this.btnParseMarkupAndDisplay3.Name = "btnParseMarkupAndDisplay3";
-            this.btnParseMarkupAndDisplay3.Size = new System.Drawing.Size(214, 40);
-            this.btnParseMarkupAndDisplay3.TabIndex = 22;
-            this.btnParseMarkupAndDisplay3.Text = "Parse markup and display rich text";
-            this.btnParseMarkupAndDisplay3.UseVisualStyleBackColor = true;
-            this.btnParseMarkupAndDisplay3.Click += new System.EventHandler(this.btnParseMarkupAndDisplay3_Click);
+            this.btnLoadMarkupTest2.Location = new System.Drawing.Point(140, 12);
+            this.btnLoadMarkupTest2.Name = "btnLoadMarkupTest2";
+            this.btnLoadMarkupTest2.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest2.TabIndex = 21;
+            this.btnLoadMarkupTest2.Text = "#2";
+            this.btnLoadMarkupTest2.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest2.Click += new System.EventHandler(this.btnLoadMarkupTest2_Click);
             // 
-            // tbMarkup4
+            // btnLoadMarkupTest3
             // 
-            this.tbMarkup4.Location = new System.Drawing.Point(638, 412);
-            this.tbMarkup4.Multiline = true;
-            this.tbMarkup4.Name = "tbMarkup4";
-            this.tbMarkup4.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMarkup4.Size = new System.Drawing.Size(196, 125);
-            this.tbMarkup4.TabIndex = 23;
-            this.tbMarkup4.Text = "plaintext1 *italic1* plaintext2 _italic2_ plaintext3 **bold1** plaintext4 __bold2" +
-    "__ plaintext5\r\n***bolditalic1*** plaintext6 ___bolditalic2___ plaintext7";
+            this.btnLoadMarkupTest3.Location = new System.Drawing.Point(180, 12);
+            this.btnLoadMarkupTest3.Name = "btnLoadMarkupTest3";
+            this.btnLoadMarkupTest3.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest3.TabIndex = 22;
+            this.btnLoadMarkupTest3.Text = "#3";
+            this.btnLoadMarkupTest3.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest3.Click += new System.EventHandler(this.btnLoadMarkupTest3_Click);
             // 
-            // btnParseMarkupAndDisplay4
+            // btnLoadMarkupTest4
             // 
-            this.btnParseMarkupAndDisplay4.Location = new System.Drawing.Point(638, 543);
-            this.btnParseMarkupAndDisplay4.Name = "btnParseMarkupAndDisplay4";
-            this.btnParseMarkupAndDisplay4.Size = new System.Drawing.Size(196, 40);
-            this.btnParseMarkupAndDisplay4.TabIndex = 24;
-            this.btnParseMarkupAndDisplay4.Text = "Parse markup and display rich text";
-            this.btnParseMarkupAndDisplay4.UseVisualStyleBackColor = true;
-            this.btnParseMarkupAndDisplay4.Click += new System.EventHandler(this.btnParseMarkupAndDisplay4_Click);
+            this.btnLoadMarkupTest4.Location = new System.Drawing.Point(220, 12);
+            this.btnLoadMarkupTest4.Name = "btnLoadMarkupTest4";
+            this.btnLoadMarkupTest4.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest4.TabIndex = 23;
+            this.btnLoadMarkupTest4.Text = "#4";
+            this.btnLoadMarkupTest4.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest4.Click += new System.EventHandler(this.btnLoadMarkupTest4_Click);
             // 
-            // markupRichTextControl
+            // btnLoadMarkupTest5
             // 
-            this.markupRichTextControl.BackColor = System.Drawing.Color.White;
-            this.markupRichTextControl.Location = new System.Drawing.Point(12, 12);
-            this.markupRichTextControl.Name = "markupRichTextControl";
-            this.markupRichTextControl.Size = new System.Drawing.Size(400, 297);
-            this.markupRichTextControl.TabIndex = 4;
+            this.btnLoadMarkupTest5.Location = new System.Drawing.Point(260, 12);
+            this.btnLoadMarkupTest5.Name = "btnLoadMarkupTest5";
+            this.btnLoadMarkupTest5.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest5.TabIndex = 24;
+            this.btnLoadMarkupTest5.Text = "#5";
+            this.btnLoadMarkupTest5.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest5.Click += new System.EventHandler(this.btnLoadMarkupTest5_Click);
+            // 
+            // markupRichtextControl
+            // 
+            this.markupRichtextControl.BackColor = System.Drawing.Color.White;
+            this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
+            this.markupRichtextControl.Name = "markupRichtextControl";
+            this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
+            this.markupRichtextControl.TabIndex = 25;
             // 
             // FrmMainTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 599);
-            this.Controls.Add(this.btnParseMarkupAndDisplay4);
-            this.Controls.Add(this.tbMarkup4);
-            this.Controls.Add(this.btnParseMarkupAndDisplay3);
-            this.Controls.Add(this.btnParseMarkupAndDisplay2);
-            this.Controls.Add(this.tbMarkup3);
-            this.Controls.Add(this.tbMarkup2);
+            this.Controls.Add(this.markupRichtextControl);
+            this.Controls.Add(this.btnLoadMarkupTest5);
+            this.Controls.Add(this.btnLoadMarkupTest4);
+            this.Controls.Add(this.lbTextControlWidthUnits);
+            this.Controls.Add(this.btnLoadMarkupTest3);
+            this.Controls.Add(this.btnLoadMarkupTest2);
+            this.Controls.Add(this.lblTextLoadMarkupTest);
+            this.Controls.Add(this.btnLoadMarkupTest1);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lbTextControlWidth);
             this.Controls.Add(this.btnParseMarkupAndDisplay1);
-            this.Controls.Add(this.tbMarkup1);
-            this.Controls.Add(this.markupRichTextControl);
+            this.Controls.Add(this.numUpDownWidthRichMarkupEditorControl);
+            this.Controls.Add(this.tbMarkup);
             this.Name = "FrmMainTest";
-            this.Text = "Testing of MarkupRichTextControl";
+            this.Text = "MarkupRichTextControl demo";
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -362,7 +355,6 @@
         }
 
         #endregion
-        private MarkupRichtextControl markupRichTextControl;
         private System.Windows.Forms.Button btnAddRichtext;
         private System.Windows.Forms.TextBox tbNewText;
         private System.Windows.Forms.Label lbTextText;
@@ -374,20 +366,21 @@
         private System.Windows.Forms.CheckBox chxUnderline;
         private System.Windows.Forms.Label lbTextControlWidth;
         private System.Windows.Forms.NumericUpDown numUpDownWidthRichMarkupEditorControl;
-        private System.Windows.Forms.TextBox tbMarkup1;
+        private System.Windows.Forms.TextBox tbMarkup;
         private System.Windows.Forms.Button btnParseMarkupAndDisplay1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chxHyperlink;
         private System.Windows.Forms.TextBox tbHyperlink;
         private System.Windows.Forms.CheckBox chxStrikeout;
-        private System.Windows.Forms.TextBox tbMarkup2;
-        private System.Windows.Forms.TextBox tbMarkup3;
-        private System.Windows.Forms.Button btnParseMarkupAndDisplay2;
-        private System.Windows.Forms.Button btnParseMarkupAndDisplay3;
         private System.Windows.Forms.Label lbTextControlWidthUnits;
-        private System.Windows.Forms.TextBox tbMarkup4;
-        private System.Windows.Forms.Button btnParseMarkupAndDisplay4;
         private System.Windows.Forms.CheckBox chxNewLine;
+        private System.Windows.Forms.Button btnLoadMarkupTest1;
+        private System.Windows.Forms.Label lblTextLoadMarkupTest;
+        private System.Windows.Forms.Button btnLoadMarkupTest2;
+        private System.Windows.Forms.Button btnLoadMarkupTest3;
+        private System.Windows.Forms.Button btnLoadMarkupTest4;
+        private System.Windows.Forms.Button btnLoadMarkupTest5;
+        private MarkupRichtextControl markupRichtextControl;
     }
 }
 
