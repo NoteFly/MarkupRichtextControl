@@ -14,6 +14,7 @@ public class MarkupToken
         this.TextLeftPosition = Int32.MaxValue;
         this.Text = null;
         this.TextAppendNewLine = false;
+        this.IsLine = false;
     }
 
     public char CharLeft { get; set; }
@@ -24,6 +25,7 @@ public class MarkupToken
     public bool Nomarkup { get; set; }
     public string Text { get; set; }
     public bool TextAppendNewLine { get;  set; }
+    public bool IsLine { get; set; }
 }
 
 public class MarkupTokenizer {
@@ -53,11 +55,15 @@ public class MarkupTokenizer {
     {
         this.markuptokens.Clear();
         MarkupToken markuptoken = new MarkupToken();
+        int linenr = 0;
+        int numdashes = 0;
+        int lastdashlinenr = -1;
         for (int i = 0; i < this.markup.Length; i++)
         {
             char chr = this.markup[i];
             if (chr == '\r' || chr == '\n' || i == this.markup.Length -1)
             {
+                //linenr++;
                 int textlength = i - markuptoken.TextLeftPosition;
                 if (i == this.markup.Length - 1)
                 {
@@ -67,8 +73,12 @@ public class MarkupTokenizer {
 
                 if (markuptoken.CharLeft == '#' || markuptoken.CharLeft == '-')
                 {
-                    // do not need closing tag(head) or closing tag forbidden(list/line)                    
-                    markuptoken.Text = this.markup.Substring(markuptoken.TextLeftPosition, textlength).Trim();
+                    // do not need closing tag(head) or closing tag forbidden(list/line)
+                    //if (!markuptoken.IsLine)
+                    //{
+                        markuptoken.Text = this.markup.Substring(markuptoken.TextLeftPosition, textlength).Trim();
+                    //}
+
                     this.markuptokens.Add(markuptoken);
                     markuptoken = new MarkupToken();
                 }
@@ -95,10 +105,13 @@ public class MarkupTokenizer {
                         textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
                         String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
                         markuptoken.Text = text;
+                        markuptoken.TextAppendNewLine = true; // test1
                         this.markuptokens.Add(markuptoken);
                         markuptoken = new MarkupToken();
                     }
                 }
+
+                linenr++;
             }
             else if (chr == '_' || chr == '*' || chr == '#' || chr == '-' || chr == '~' || chr == '`' ||
                 chr == '[' || chr == ']' || chr == '(' || chr == ')')
@@ -107,11 +120,27 @@ public class MarkupTokenizer {
                 {
                     markuptoken.CharLeft = chr;
                     markuptoken.TextLeftPosition = i + 1;
+                    if (chr == '-')
+                    {
+                        numdashes = UpdateNumberDashes(numdashes, lastdashlinenr, linenr);
+                        lastdashlinenr = linenr;
+                    }
                 }
                 else if (markuptoken.CharLeft == chr && markuptoken.TextLeftPosition == i)
                 {
                     markuptoken.TextLeftPosition = i + 1;
                     markuptoken.Level += 1;
+                    if (chr == '-')
+                    {
+                        numdashes = this.UpdateNumberDashes(numdashes, lastdashlinenr, linenr);
+                        lastdashlinenr = linenr;
+                        if (numdashes == 2)
+                        {
+                            markuptoken.IsLine = true;
+                            //this.markuptokens.Add(markuptoken);
+                            //markuptoken = new MarkupToken();
+                        }
+                    }
                 }
                 else if (markuptoken.Nomarkup)
                 {
@@ -157,6 +186,17 @@ public class MarkupTokenizer {
             }
         }
     }
+
+    private int UpdateNumberDashes(int numdashes, int lastdashlinenr, int linenr)
+    {
+        //if (!linenr.Equals(lastdashlinenr))
+        if (linenr != lastdashlinenr)
+        {
+            numdashes = 0;
+        }
+
+        return ++numdashes;
+    }
 }
 
 partial class MarkupToRichtextParser
@@ -186,79 +226,87 @@ partial class MarkupToRichtextParser
         bool previous_markuptokon_hyperlinktext = false;
         for (int i = 0; i < markuptokens.Length; ++i)
         {
-            switch (markuptokens[i].CharLeft)
+            if (markuptokens[i].IsLine)
             {
-                case '#':
-                    // head
-                    int headlevel = markuptokens[i].Level;
-                    richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.headsfontsizes[headlevel], solidbrushTextcolorDefault, FontStyle.Bold);
-                    richtextpart.AppendNewLine = true;
-                    this.markuptextcontrol.appendText(richtextpart);
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                case '-':
-                    // list
-                    richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Regular);
-                    richtextpart.PrependBullit = true;
-                    richtextpart.AppendNewLine = true;
-                    this.markuptextcontrol.appendText(richtextpart);
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                case '*':
-                case '_':
-                    // emphasis
-                    int emphasislevel = markuptokens[i].Level;
-                    int emphasisfontstyle = (int)FontStyle.Italic;
-                    if (emphasislevel >= 1)
-                    {
-                        emphasisfontstyle = (int)FontStyle.Bold;
-                    }
-                    if (emphasislevel >= 2)
-                    {
-                        emphasisfontstyle += (int)FontStyle.Italic;
-                    }
-
-                    richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, (FontStyle)emphasisfontstyle);
-                    this.markuptextcontrol.appendText(richtextpart);
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                case '~':
-                    // strikethrough
-                    richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Strikeout);
-                    this.markuptextcontrol.appendText(richtextpart);
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                case '[':
-                    // hyperlink text
-                    previous_markuptokon_hyperlinktext = true;
-                    break;
-                case '(':
-                    // hyperlink url
-                    if (previous_markuptokon_hyperlinktext && i > 0)
-                    {
-                        FontStyle fontsylehyperlink = FontStyle.Underline;
-                        SolidBrush solidbrushHyperlink = new SolidBrush(Color.Blue);
-                        richtextpart = new RichTextPart(markuptokens[i-1].Text, "Arial", this.fontsizedefault, solidbrushHyperlink, fontsylehyperlink);
-                        richtextpart.Href = markuptokens[i].Text;
-                        this.markuptextcontrol.appendText(richtextpart);
-                    }
-
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                case '`':
-                    // literally and code highlighting
-                    // TODO
-                    previous_markuptokon_hyperlinktext = false;
-                    break;
-                default:
-                    if (markuptokens[i].Nomarkup)
-                    {
+                richtextpart = new RichTextPart(Pens.Black);
+                this.markuptextcontrol.Append(richtextpart);
+            }
+            else
+            {
+                switch (markuptokens[i].CharLeft)
+                {
+                    case '#':
+                        // head
+                        int headlevel = markuptokens[i].Level;
+                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.headsfontsizes[headlevel], solidbrushTextcolorDefault, FontStyle.Bold);
+                        richtextpart.AppendNewLine = true;
+                        this.markuptextcontrol.Append(richtextpart);
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    case '-':
+                        // list
                         richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Regular);
-                        richtextpart.AppendNewLine = markuptokens[i].TextAppendNewLine;
-                        this.markuptextcontrol.appendText(richtextpart);
-                    }
+                        richtextpart.PrependBullit = true;
+                        richtextpart.AppendNewLine = true;
+                        this.markuptextcontrol.Append(richtextpart);
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    case '*':
+                    case '_':
+                        // emphasis
+                        int emphasislevel = markuptokens[i].Level;
+                        int emphasisfontstyle = (int)FontStyle.Italic;
+                        if (emphasislevel >= 1)
+                        {
+                            emphasisfontstyle = (int)FontStyle.Bold;
+                        }
+                        if (emphasislevel >= 2)
+                        {
+                            emphasisfontstyle += (int)FontStyle.Italic;
+                        }
 
-                    break;
+                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, (FontStyle)emphasisfontstyle);
+                        this.markuptextcontrol.Append(richtextpart);
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    case '~':
+                        // strikethrough
+                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Strikeout);
+                        this.markuptextcontrol.Append(richtextpart);
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    case '[':
+                        // hyperlink text
+                        previous_markuptokon_hyperlinktext = true;
+                        break;
+                    case '(':
+                        // hyperlink url
+                        if (previous_markuptokon_hyperlinktext && i > 0)
+                        {
+                            FontStyle fontsylehyperlink = FontStyle.Underline;
+                            SolidBrush solidbrushHyperlink = new SolidBrush(Color.Blue);
+                            richtextpart = new RichTextPart(markuptokens[i - 1].Text, "Arial", this.fontsizedefault, solidbrushHyperlink, fontsylehyperlink);
+                            richtextpart.Href = markuptokens[i].Text;
+                            this.markuptextcontrol.Append(richtextpart);
+                        }
+
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    case '`':
+                        // literally and code highlighting
+                        // TODO
+                        previous_markuptokon_hyperlinktext = false;
+                        break;
+                    default:
+                        if (markuptokens[i].Nomarkup)
+                        {
+                            richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Regular);
+                            richtextpart.AppendNewLine = markuptokens[i].TextAppendNewLine;
+                            this.markuptextcontrol.Append(richtextpart);
+                        }
+
+                        break;
+                }
             }
         }
 

@@ -53,7 +53,12 @@
             this.btnLoadMarkupTest3 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest4 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest5 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest6 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest7 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest8 = new System.Windows.Forms.Button();
             this.markupRichtextControl = new MarkupRichtextControl();
+            this.btnLoadMarkupTest9 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -172,11 +177,11 @@
             // 
             // tbMarkup
             // 
-            this.tbMarkup.Location = new System.Drawing.Point(12, 42);
+            this.tbMarkup.Location = new System.Drawing.Point(12, 64);
             this.tbMarkup.Multiline = true;
             this.tbMarkup.Name = "tbMarkup";
             this.tbMarkup.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbMarkup.Size = new System.Drawing.Size(325, 385);
+            this.tbMarkup.Size = new System.Drawing.Size(325, 363);
             this.tbMarkup.TabIndex = 16;
             // 
             // btnParseMarkupAndDisplay1
@@ -261,7 +266,7 @@
             // 
             // btnLoadMarkupTest1
             // 
-            this.btnLoadMarkupTest1.Location = new System.Drawing.Point(100, 12);
+            this.btnLoadMarkupTest1.Location = new System.Drawing.Point(105, 7);
             this.btnLoadMarkupTest1.Name = "btnLoadMarkupTest1";
             this.btnLoadMarkupTest1.Size = new System.Drawing.Size(37, 23);
             this.btnLoadMarkupTest1.TabIndex = 19;
@@ -272,7 +277,7 @@
             // lblTextLoadMarkupTest
             // 
             this.lblTextLoadMarkupTest.AutoSize = true;
-            this.lblTextLoadMarkupTest.Location = new System.Drawing.Point(9, 17);
+            this.lblTextLoadMarkupTest.Location = new System.Drawing.Point(9, 12);
             this.lblTextLoadMarkupTest.Name = "lblTextLoadMarkupTest";
             this.lblTextLoadMarkupTest.Size = new System.Drawing.Size(92, 13);
             this.lblTextLoadMarkupTest.TabIndex = 20;
@@ -280,7 +285,7 @@
             // 
             // btnLoadMarkupTest2
             // 
-            this.btnLoadMarkupTest2.Location = new System.Drawing.Point(140, 12);
+            this.btnLoadMarkupTest2.Location = new System.Drawing.Point(142, 7);
             this.btnLoadMarkupTest2.Name = "btnLoadMarkupTest2";
             this.btnLoadMarkupTest2.Size = new System.Drawing.Size(37, 23);
             this.btnLoadMarkupTest2.TabIndex = 21;
@@ -290,7 +295,7 @@
             // 
             // btnLoadMarkupTest3
             // 
-            this.btnLoadMarkupTest3.Location = new System.Drawing.Point(180, 12);
+            this.btnLoadMarkupTest3.Location = new System.Drawing.Point(180, 7);
             this.btnLoadMarkupTest3.Name = "btnLoadMarkupTest3";
             this.btnLoadMarkupTest3.Size = new System.Drawing.Size(37, 23);
             this.btnLoadMarkupTest3.TabIndex = 22;
@@ -300,7 +305,7 @@
             // 
             // btnLoadMarkupTest4
             // 
-            this.btnLoadMarkupTest4.Location = new System.Drawing.Point(220, 12);
+            this.btnLoadMarkupTest4.Location = new System.Drawing.Point(217, 7);
             this.btnLoadMarkupTest4.Name = "btnLoadMarkupTest4";
             this.btnLoadMarkupTest4.Size = new System.Drawing.Size(37, 23);
             this.btnLoadMarkupTest4.TabIndex = 23;
@@ -310,13 +315,43 @@
             // 
             // btnLoadMarkupTest5
             // 
-            this.btnLoadMarkupTest5.Location = new System.Drawing.Point(260, 12);
+            this.btnLoadMarkupTest5.Location = new System.Drawing.Point(255, 7);
             this.btnLoadMarkupTest5.Name = "btnLoadMarkupTest5";
             this.btnLoadMarkupTest5.Size = new System.Drawing.Size(37, 23);
             this.btnLoadMarkupTest5.TabIndex = 24;
             this.btnLoadMarkupTest5.Text = "#5";
             this.btnLoadMarkupTest5.UseVisualStyleBackColor = true;
             this.btnLoadMarkupTest5.Click += new System.EventHandler(this.btnLoadMarkupTest5_Click);
+            // 
+            // btnLoadMarkupTest6
+            // 
+            this.btnLoadMarkupTest6.Location = new System.Drawing.Point(105, 35);
+            this.btnLoadMarkupTest6.Name = "btnLoadMarkupTest6";
+            this.btnLoadMarkupTest6.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest6.TabIndex = 26;
+            this.btnLoadMarkupTest6.Text = "#6";
+            this.btnLoadMarkupTest6.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest6.Click += new System.EventHandler(this.btnLoadMarkupTest6_Click);
+            // 
+            // btnLoadMarkupTest7
+            // 
+            this.btnLoadMarkupTest7.Location = new System.Drawing.Point(143, 35);
+            this.btnLoadMarkupTest7.Name = "btnLoadMarkupTest7";
+            this.btnLoadMarkupTest7.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest7.TabIndex = 27;
+            this.btnLoadMarkupTest7.Text = "#7";
+            this.btnLoadMarkupTest7.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest7.Click += new System.EventHandler(this.btnLoadMarkupTest7_Click);
+            // 
+            // btnLoadMarkupTest8
+            // 
+            this.btnLoadMarkupTest8.Location = new System.Drawing.Point(180, 35);
+            this.btnLoadMarkupTest8.Name = "btnLoadMarkupTest8";
+            this.btnLoadMarkupTest8.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest8.TabIndex = 28;
+            this.btnLoadMarkupTest8.Text = "#8";
+            this.btnLoadMarkupTest8.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest8.Click += new System.EventHandler(this.btnLoadMarkupTest8_Click);
             // 
             // markupRichtextControl
             // 
@@ -326,11 +361,36 @@
             this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
             this.markupRichtextControl.TabIndex = 25;
             // 
+            // btnLoadMarkupTest9
+            // 
+            this.btnLoadMarkupTest9.Location = new System.Drawing.Point(217, 35);
+            this.btnLoadMarkupTest9.Name = "btnLoadMarkupTest9";
+            this.btnLoadMarkupTest9.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest9.TabIndex = 29;
+            this.btnLoadMarkupTest9.Text = "#9";
+            this.btnLoadMarkupTest9.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest9.Click += new System.EventHandler(this.btnLoadMarkupTest9_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(255, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(37, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "#10";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmMainTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 599);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadMarkupTest9);
+            this.Controls.Add(this.btnLoadMarkupTest8);
+            this.Controls.Add(this.btnLoadMarkupTest7);
+            this.Controls.Add(this.btnLoadMarkupTest6);
             this.Controls.Add(this.markupRichtextControl);
             this.Controls.Add(this.btnLoadMarkupTest5);
             this.Controls.Add(this.btnLoadMarkupTest4);
@@ -381,6 +441,11 @@
         private System.Windows.Forms.Button btnLoadMarkupTest4;
         private System.Windows.Forms.Button btnLoadMarkupTest5;
         private MarkupRichtextControl markupRichtextControl;
+        private System.Windows.Forms.Button btnLoadMarkupTest6;
+        private System.Windows.Forms.Button btnLoadMarkupTest7;
+        private System.Windows.Forms.Button btnLoadMarkupTest8;
+        private System.Windows.Forms.Button btnLoadMarkupTest9;
+        private System.Windows.Forms.Button button1;
     }
 }
 

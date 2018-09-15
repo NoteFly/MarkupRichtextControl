@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestMarkupRichTextControl
@@ -35,7 +30,7 @@ namespace TestMarkupRichTextControl
                 richtextpartFS12.Href = this.tbHyperlink.Text;
             }
 
-            this.markupRichtextControl.appendText(richtextpartFS12);
+            this.markupRichtextControl.Append(richtextpartFS12);
             this.Refresh();
         }
 
@@ -104,12 +99,12 @@ namespace TestMarkupRichTextControl
 
         private void btnLoadMarkupTest1_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "test\r\ntesttest\r\ntesttesttest\r\ntesttest\r\nTest: [Github page](https://github.com/NoteFly/MarkupRichtextControl) hyperlink.\r\n";
+            this.tbMarkup.Text = "nomarkup\r\ntest\r\ntesttest\r\ntesttesttest\r\ntesttest\r\ntest";
         }
 
         private void btnLoadMarkupTest2_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "# head1\r\n## head2\r\n## head2 with closing##\r\n### head3\r\n#### head4 \r\nSome plaintext before head5.\r\n##### head5\r\n";
+            this.tbMarkup.Text = "# head1\r\n## head2\r\n## head2 with closing##\r\n### head3\r\n####      head4 \r\nSome plaintext before head5.\r\n##### head5\r\n";
         }
 
         private void btnLoadMarkupTest3_Click(object sender, EventArgs e)
@@ -122,12 +117,52 @@ namespace TestMarkupRichTextControl
 
         private void btnLoadMarkupTest4_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "list:\r\n- item1\r\n- item2\r\n- item3\r\n";
+            this.tbMarkup.Text = "list:\r\n- item1\r\n-item2\r\n- item3 test\r\n- item4-test\r\n- item5\r\n";
         }
 
         private void btnLoadMarkupTest5_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "strikethrough test ~failed~\r\n";
+            this.tbMarkup.Text = "strikethrough test ~failed~\r\nTest";
+        }
+
+        private void btnLoadMarkupTest6_Click(object sender, EventArgs e)
+        {
+            this.tbMarkup.Text = "Test [Github page](https://github.com/NoteFly/MarkupRichtextControl) hyperlink.\r\n";
+        }
+
+        private void btnLoadMarkupTest7_Click(object sender, EventArgs e)
+        {
+            this.tbMarkup.Text = "richtext *_nested_ text test*\r\n*aaa_bbb_*ccc";
+        }
+
+        private void btnLoadMarkupTest8_Click(object sender, EventArgs e)
+        {
+            this.tbMarkup.Text = "---\r\nbegin past, now middle line test:\r\n---\r\nAnd a end line test:\r\n---";
+        }
+
+        private void btnLoadMarkupTest9_Click(object sender, EventArgs e)
+        {
+            StringBuilder sbhead = new StringBuilder();
+            sbhead.Append("#");
+            for (int i = 0; i < 10; i++)
+            {
+                sbhead.Append("longtitle");
+            }
+
+            sbhead.AppendLine();
+            this.tbMarkup.Text = sbhead.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StringBuilder sbtext = new StringBuilder();
+            for (int i = 0; i < 50; i++)
+            {
+                sbtext.Append("longline");
+            }
+
+            sbtext.AppendLine();
+            this.tbMarkup.Text = sbtext.ToString();
         }
     }
 }

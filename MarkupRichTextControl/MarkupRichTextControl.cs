@@ -7,12 +7,16 @@ internal partial class MarkupRichtextControl : UserControl
 {
     private List<RichTextPart> richtextparts = new List<RichTextPart>();
     private List<HyperlinkClickablePart> hyperlinkclickablepart = new List<HyperlinkClickablePart>();
+    const int MARGIN_LINE_LEFT = 4;
+    const int MARGIN_LINE_RIGHT = 4;
+    const int MARGIN_LINE_TOP = 4;
+    const int LINE_HEIGHT = 8;
 
     /// <summary>
     /// Add a new part of rich text to this control.
     /// </summary>
     /// <param name="newRichTextPart"></param>
-    public void appendText(RichTextPart newRichTextPart)
+    public void Append(RichTextPart newRichTextPart)
     {
         this.richtextparts.Add(newRichTextPart);
     }
@@ -33,6 +37,19 @@ internal partial class MarkupRichtextControl : UserControl
         for (int i = 0; i < this.richtextparts.Count; ++i)
         {
             RichTextPart richTextPart = this.richtextparts[i];
+            if (richTextPart.IsLine)
+            {
+                Point linestart = location;
+                Point lineend = location;
+                linestart.X += MARGIN_LINE_LEFT;
+                linestart.Y += MARGIN_LINE_TOP;
+                lineend.X += this.Width - MARGIN_LINE_RIGHT;
+                lineend.Y += MARGIN_LINE_TOP;
+                richTextPart.DrawLine(paintEvtArgs, linestart, lineend);
+                location.Y += LINE_HEIGHT;
+                continue;
+            }
+
             SizeF textsize = richTextPart.GetSizeText(paintEvtArgs);
             int heightLineFontsize = Convert.ToInt32(textsize.Height);
             int widthRichTextPart = Convert.ToInt32(textsize.Width);

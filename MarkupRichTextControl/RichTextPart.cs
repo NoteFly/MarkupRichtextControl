@@ -6,16 +6,24 @@ public class RichTextPart
     private string text;
     private Font font;
     private SolidBrush textcolor;
+    private Pen linecolor;
     private SizeF richtextpartsize;
     private bool appendNewLine = false;
     private bool prependBullit = false;
     private string href = null;
+    private bool isline = false;
 
     public RichTextPart(string text, string lettertype, int fontsize, SolidBrush textcolor, FontStyle fontstyle)
 	{
         this.text = text;
         this.font = new Font(lettertype, fontsize, fontstyle);
         this.textcolor = textcolor;
+    }
+
+    public RichTextPart(Pen linecolor)
+    {
+        this.IsLine = true;
+        this.linecolor = linecolor;
     }
 
     public string Text
@@ -35,6 +43,7 @@ public class RichTextPart
     public int Color { get; }
     public bool AppendNewLine { get; set; }
     public bool PrependBullit { get; set; }
+    public bool IsLine { get; set; }
 
     public SizeF GetSizeText(System.Windows.Forms.PaintEventArgs e)
     {
@@ -61,5 +70,10 @@ public class RichTextPart
     public void DrawPart(System.Windows.Forms.PaintEventArgs e, Point location, int start, int length)
     {
         e.Graphics.DrawString(this.text.Substring(start, length), this.font, this.textcolor, location);
+    }
+
+    public void DrawLine(System.Windows.Forms.PaintEventArgs e, Point locationstart, Point locationend)
+    {
+        e.Graphics.DrawLine(this.linecolor, locationstart, locationend);
     }
 }
