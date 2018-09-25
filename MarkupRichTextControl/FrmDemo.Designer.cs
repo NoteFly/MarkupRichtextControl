@@ -58,7 +58,7 @@
             this.btnLoadMarkupTest8 = new System.Windows.Forms.Button();
             this.markupRichtextControl = new MarkupRichtextControl();
             this.btnLoadMarkupTest9 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadMarkupTest10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -371,22 +371,22 @@
             this.btnLoadMarkupTest9.UseVisualStyleBackColor = true;
             this.btnLoadMarkupTest9.Click += new System.EventHandler(this.btnLoadMarkupTest9_Click);
             // 
-            // button1
+            // btnLoadMarkupTest10
             // 
-            this.button1.Location = new System.Drawing.Point(255, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(37, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "#10";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLoadMarkupTest10.Location = new System.Drawing.Point(255, 35);
+            this.btnLoadMarkupTest10.Name = "btnLoadMarkupTest10";
+            this.btnLoadMarkupTest10.Size = new System.Drawing.Size(37, 23);
+            this.btnLoadMarkupTest10.TabIndex = 30;
+            this.btnLoadMarkupTest10.Text = "#10";
+            this.btnLoadMarkupTest10.UseVisualStyleBackColor = true;
+            this.btnLoadMarkupTest10.Click += new System.EventHandler(this.btnLoadMarkupTest10_Click);
             // 
             // FrmMainTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 599);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadMarkupTest10);
             this.Controls.Add(this.btnLoadMarkupTest9);
             this.Controls.Add(this.btnLoadMarkupTest8);
             this.Controls.Add(this.btnLoadMarkupTest7);
@@ -445,7 +445,7 @@
         private System.Windows.Forms.Button btnLoadMarkupTest7;
         private System.Windows.Forms.Button btnLoadMarkupTest8;
         private System.Windows.Forms.Button btnLoadMarkupTest9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoadMarkupTest10;
     }
 }
 
