@@ -185,7 +185,7 @@ namespace TestMarkupRichTextControl
         /// <param name="e"></param>
         private void btnLoadMarkupTest8_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "---\r\nbegin past, now middle line test:\r\n---\r\nAnd a end line test:\r\n---";
+            this.tbMarkup.Text = "---\r\nbegin past, now middle line test:\r\n---\r\nTesting line by stars:\r\n***\r\n\r\n*** not a line, bold text ok.\r\n\r\nAnd a end line test:\r\n---";
         }
 
         /// <summary>

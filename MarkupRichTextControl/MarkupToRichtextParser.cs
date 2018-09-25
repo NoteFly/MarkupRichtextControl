@@ -56,14 +56,18 @@ public class MarkupTokenizer {
         this.markuptokens.Clear();
         MarkupToken markuptoken = new MarkupToken();
         int linenr = 0;
+
         int numdashes = 0;
-        int lastdashlinenr = -1;
+        int lastlinenrdash = -1;
+
+        int numstars = 0;
+        int lastlinenrstar = -1;
+
         for (int i = 0; i < this.markup.Length; i++)
         {
             char chr = this.markup[i];
             if (chr == '\r' || chr == '\n' || i == this.markup.Length -1)
             {
-                //linenr++;
                 int textlength = i - markuptoken.TextLeftPosition;
                 if (i == this.markup.Length - 1)
                 {
@@ -71,13 +75,14 @@ public class MarkupTokenizer {
                     textlength += 1;
                 }
 
-                if (markuptoken.CharLeft == '#' || markuptoken.CharLeft == '-')
+                if (markuptoken.CharLeft == '#' ||
+                    markuptoken.CharLeft == '-' || markuptoken.CharLeft == '*')
                 {
                     // do not need closing tag(head) or closing tag forbidden(list/line)
-                    //if (!markuptoken.IsLine)
-                    //{
+                    if (!markuptoken.IsLine)
+                    {
                         markuptoken.Text = this.markup.Substring(markuptoken.TextLeftPosition, textlength).Trim();
-                    //}
+                    }
 
                     this.markuptokens.Add(markuptoken);
                     markuptoken = new MarkupToken();
@@ -122,8 +127,13 @@ public class MarkupTokenizer {
                     markuptoken.TextLeftPosition = i + 1;
                     if (chr == '-')
                     {
-                        numdashes = UpdateNumberDashes(numdashes, lastdashlinenr, linenr);
-                        lastdashlinenr = linenr;
+                        numdashes = this.UpdateNumberOfCharInLine(numdashes, lastlinenrdash, linenr);
+                        lastlinenrdash = linenr;
+                    }
+                    else if (chr == '*')
+                    {
+                        numstars = this.UpdateNumberOfCharInLine(numstars, lastlinenrstar, linenr);
+                        lastlinenrstar = linenr;
                     }
                 }
                 else if (markuptoken.CharLeft == chr && markuptoken.TextLeftPosition == i)
@@ -132,13 +142,33 @@ public class MarkupTokenizer {
                     markuptoken.Level += 1;
                     if (chr == '-')
                     {
-                        numdashes = this.UpdateNumberDashes(numdashes, lastdashlinenr, linenr);
-                        lastdashlinenr = linenr;
+                        numdashes = this.UpdateNumberOfCharInLine(numdashes, lastlinenrdash, linenr);
+                        lastlinenrdash = linenr;
                         if (numdashes == 2)
                         {
                             markuptoken.IsLine = true;
-                            //this.markuptokens.Add(markuptoken);
-                            //markuptoken = new MarkupToken();
+                        }
+                    }
+                    else if (chr == '*')
+                    {
+                        numstars = this.UpdateNumberOfCharInLine(numstars, lastlinenrstar, linenr);
+                        lastlinenrstar = linenr;
+                        if (numstars >= 3)
+                        {
+                            markuptoken.IsLine = false;
+                            // Don't make line if next char is not: a line ending char, or at end of the markup.
+                            if (i + 1 >= this.markup.Length)
+                            {
+                                markuptoken.IsLine = true;
+                            }
+                            else
+                            {
+                                char nextchar = this.markup[i + 1];
+                                if (nextchar == '\r' || nextchar == '\n')
+                                {
+                                    markuptoken.IsLine = true;
+                                }
+                            }
                         }
                     }
                 }
@@ -187,15 +217,14 @@ public class MarkupTokenizer {
         }
     }
 
-    private int UpdateNumberDashes(int numdashes, int lastdashlinenr, int linenr)
+    private int UpdateNumberOfCharInLine(int number_of_char, int lastlinenrchar, int linenr)
     {
-        //if (!linenr.Equals(lastdashlinenr))
-        if (linenr != lastdashlinenr)
+        if (linenr != lastlinenrchar)
         {
-            numdashes = 0;
+            number_of_char = 0;
         }
 
-        return ++numdashes;
+        return ++number_of_char;
     }
 }
 
