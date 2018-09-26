@@ -123,6 +123,7 @@ public class MarkupTokenizer {
             {
                 if (markuptoken.CharLeft == '\0' && !markuptoken.Nomarkup)
                 {
+                    // Start new rich text.
                     markuptoken.CharLeft = chr;
                     markuptoken.TextLeftPosition = i + 1;
                     if (chr == '-')
@@ -138,6 +139,7 @@ public class MarkupTokenizer {
                 }
                 else if (markuptoken.CharLeft == chr && markuptoken.TextLeftPosition == i)
                 {
+                    // Repeating - or *
                     markuptoken.TextLeftPosition = i + 1;
                     markuptoken.Level += 1;
                     if (chr == '-')
@@ -187,21 +189,36 @@ public class MarkupTokenizer {
                     if (markuptoken.Level > 0 && markuptoken.Levelclosed < markuptoken.Level)
                     {
                         markuptoken.Levelclosed += 1;
-                    }
-                    else
+                    } else
                     {
-                        markuptoken.CharRight = chr;
-                        int textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
-                        String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
-                        // Remove leading and ending space from headings
-                        if (chr == '#')
+                        bool inlinedash = false;
+                        if (chr == '-')
                         {
-                            text = text.Trim();
+                            if (i + 1 < this.markup.Length)
+                            {
+                                Char nextchr = this.markup[i + 1];
+                                if (nextchr != '\r' && nextchr != '\n')
+                                {
+                                    inlinedash = true;
+                                }
+                            }
                         }
 
-                        markuptoken.Text = text;
-                        this.markuptokens.Add(markuptoken);
-                        markuptoken = new MarkupToken();
+                        if (!inlinedash)
+                        {
+                            markuptoken.CharRight = chr;
+                            int textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
+                            String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
+                            // Remove leading and ending space from headings
+                            if (chr == '#')
+                            {
+                                text = text.Trim();
+                            }
+
+                            markuptoken.Text = text;
+                            this.markuptokens.Add(markuptoken);
+                            markuptoken = new MarkupToken();
+                        }
                     }
                  }
             }
