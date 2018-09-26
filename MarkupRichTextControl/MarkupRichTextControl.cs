@@ -50,44 +50,57 @@ internal partial class MarkupRichtextControl : UserControl
                 continue;
             }
 
-            SizeF textsize = richTextPart.GetSizeText(paintEvtArgs);
-            int heightLineFontsize = Convert.ToInt32(textsize.Height);
-            int widthRichTextPart = Convert.ToInt32(textsize.Width);
             if (richTextPart.PrependBullit)
             {
                 richTextPart.Text = "• " + richTextPart.Text;
             }
 
+            if (richTextPart.Text.Length == 0)
+            {
+                continue;
+            }
+
+            SizeF textsize = richTextPart.GetSizeText(paintEvtArgs);
+            int heightLineFontsize = Convert.ToInt32(textsize.Height);
+            int widthRichTextPart = Convert.ToInt32(textsize.Width);
+            // Check if richTextPart needs to be an extra line/multiple line(s). 
             if (location.X + widthRichTextPart >= widthWithoutMargin)
             {
-                // TODO: word break design, currently just split in middle of words
-                int endx = location.X + widthRichTextPart;
-                int richTextPartLines = 0;
+                int posstartpartofrichtextpart = 0;
+                int restTextLength = richTextPart.Text.Length - posstartpartofrichtextpart;
+                int widthpartoftextpart = 0;
+                // TODO: update word break design, currently just split in middle of words on a character.
+                // Check foreach characters where to split in this richtext part
                 for (int n = 0; n < richTextPart.Text.Length; ++n)
                 {
-                    int widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, n);
-                    int linelocx = location.X + widthpartoftextpart - (widthWithoutMargin * richTextPartLines);
-                    if (linelocx > widthWithoutMargin)
+                    int textlengthpartofrichtextpart = n - posstartpartofrichtextpart;
+                    widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, textlengthpartofrichtextpart);
+                    int charlocx = location.X + widthpartoftextpart;
+                    if (charlocx >= widthWithoutMargin)
                     {
-                        richTextPart.DrawPart(paintEvtArgs, location, 0, n);
+                        // A new line in control is needed for part of richtextpart.
+                        richTextPart.DrawPart(paintEvtArgs, location, posstartpartofrichtextpart, textlengthpartofrichtextpart);
                         if (!String.IsNullOrEmpty(richTextPart.Href))
                         {
                             this.CreateHyperlinkClickablePart(richTextPart, location, widthpartoftextpart, heightLineFontsize);
                         }
 
-                        ++richTextPartLines;
+                        // Update location position for next subpart of the richtextpart.
                         location.X = 0;
                         location.Y += heightLineFontsize;
-                        int restTextLength = richTextPart.Text.Length - n;
-                        richTextPart.DrawPart(paintEvtArgs, location, n, restTextLength);
-                        if (!String.IsNullOrEmpty(richTextPart.Href))
-                        {
-                            widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, restTextLength);
-                            this.CreateHyperlinkClickablePart(richTextPart, location, widthpartoftextpart, heightLineFontsize);
-                        }
-
-                        widthRichTextPart = richTextPart.GetWidthTextPart(paintEvtArgs, restTextLength);
+                        // Update start position character and textlength for spliting next subpart of the richtextpart over multiple lines.
+                        posstartpartofrichtextpart = n;
+                        restTextLength = richTextPart.Text.Length - posstartpartofrichtextpart;
+                        widthRichTextPart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, restTextLength);
                     }
+                }
+
+                // Draw rest of characters that still fit on one a line.
+                richTextPart.DrawPart(paintEvtArgs, location, posstartpartofrichtextpart, restTextLength);
+                if (!String.IsNullOrEmpty(richTextPart.Href))
+                {
+                    widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, restTextLength);
+                    this.CreateHyperlinkClickablePart(richTextPart, location, widthpartoftextpart, heightLineFontsize);
                 }
             }
             else

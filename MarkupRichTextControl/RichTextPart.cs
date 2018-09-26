@@ -56,9 +56,9 @@ public class RichTextPart
         return this.richtextpartsize;
     }
 
-    public int GetWidthTextPart(System.Windows.Forms.PaintEventArgs e, int textlength)
+    public int GetWidthTextPart(System.Windows.Forms.PaintEventArgs e, int startpos, int textlength)
     {
-        SizeF sizef = e.Graphics.MeasureString(this.text.Substring(0, textlength), this.font);
+        SizeF sizef = e.Graphics.MeasureString(this.text.Substring(startpos, textlength), this.font);
         return Convert.ToInt32(sizef.Width);
     }
 
