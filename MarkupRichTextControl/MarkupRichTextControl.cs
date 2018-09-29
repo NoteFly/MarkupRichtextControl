@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +12,14 @@ internal partial class MarkupRichtextControl : UserControl
     const int MARGIN_LINE_RIGHT = 4;
     const int MARGIN_LINE_TOP = 4;
     const int LINE_HEIGHT = 8;
+
+    public enum WordWrapMode { OnCharacter, OnWord, OnSentence }
+
+    
+    [DisplayName("WordWrapModus")]
+    [Category("Appearance")]
+    [Description("Set the text wordwrap modus. How the too long lines get wrapped.")]
+    public WordWrapMode wordwrapmodus { get; set; }
 
     /// <summary>
     /// Add a new part of rich text to this control.
@@ -69,13 +78,40 @@ internal partial class MarkupRichtextControl : UserControl
                 int posstartpartofrichtextpart = 0;
                 int restTextLength = richTextPart.Text.Length - posstartpartofrichtextpart;
                 int widthpartoftextpart = 0;
-                // TODO: update word break design, currently just split in middle of words on a character.
+                int lastspacerichtextpart = 0;
+                int lastdotrichtextpart = 0;
                 // Check foreach characters where to split in this richtext part
                 for (int n = 0; n < richTextPart.Text.Length; ++n)
                 {
-                    int textlengthpartofrichtextpart = n - posstartpartofrichtextpart;
+                    if (richTextPart.Text[n] == ' ')
+                    {
+                        lastspacerichtextpart = n;
+                    }
+                    else if (richTextPart.Text[n] == '.')
+                    {
+                        lastdotrichtextpart = n;
+                    }
+
+                    int posstartwrap = n;
+                    if (this.wordwrapmodus == WordWrapMode.OnCharacter ||
+                        lastspacerichtextpart == 0 && this.wordwrapmodus == WordWrapMode.OnWord)
+                    {
+                        posstartwrap = n;
+                    }
+                    else if (this.wordwrapmodus == WordWrapMode.OnWord ||
+                             lastdotrichtextpart == 0 && this.wordwrapmodus == WordWrapMode.OnSentence)
+                    {
+                        posstartwrap = lastspacerichtextpart;
+                    }
+                    else if (this.wordwrapmodus == WordWrapMode.OnSentence)
+                    {
+                        posstartwrap = lastdotrichtextpart;
+                    }
+
+                    int textlengthpartofrichtextpart = posstartwrap - posstartpartofrichtextpart;
                     widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, textlengthpartofrichtextpart);
-                    int charlocx = location.X + widthpartoftextpart;
+                    int widthcharpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, n - posstartpartofrichtextpart);
+                    int charlocx = location.X + widthcharpartoftextpart;
                     if (charlocx >= widthWithoutMargin)
                     {
                         // A new line in control is needed for part of richtextpart.
@@ -89,7 +125,7 @@ internal partial class MarkupRichtextControl : UserControl
                         location.X = 0;
                         location.Y += heightLineFontsize;
                         // Update start position character and textlength for spliting next subpart of the richtextpart over multiple lines.
-                        posstartpartofrichtextpart = n;
+                        posstartpartofrichtextpart = posstartwrap;
                         restTextLength = richTextPart.Text.Length - posstartpartofrichtextpart;
                         widthRichTextPart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, restTextLength);
                     }

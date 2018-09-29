@@ -56,9 +56,10 @@
             this.btnLoadMarkupTest6 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest7 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest8 = new System.Windows.Forms.Button();
-            this.markupRichtextControl = new MarkupRichtextControl();
             this.btnLoadMarkupTest9 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest10 = new System.Windows.Forms.Button();
+            this.cbxWarpOn = new System.Windows.Forms.ComboBox();
+            this.markupRichtextControl = new MarkupRichtextControl();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -144,15 +145,15 @@
             // lbTextControlWidth
             // 
             this.lbTextControlWidth.AutoSize = true;
-            this.lbTextControlWidth.Location = new System.Drawing.Point(99, 482);
+            this.lbTextControlWidth.Location = new System.Drawing.Point(18, 481);
             this.lbTextControlWidth.Name = "lbTextControlWidth";
-            this.lbTextControlWidth.Size = new System.Drawing.Size(146, 13);
+            this.lbTextControlWidth.Size = new System.Drawing.Size(35, 13);
             this.lbTextControlWidth.TabIndex = 14;
-            this.lbTextControlWidth.Text = "MarkupRichtextControl width:";
+            this.lbTextControlWidth.Text = "width:";
             // 
             // numUpDownWidthRichMarkupEditorControl
             // 
-            this.numUpDownWidthRichMarkupEditorControl.Location = new System.Drawing.Point(251, 479);
+            this.numUpDownWidthRichMarkupEditorControl.Location = new System.Drawing.Point(54, 479);
             this.numUpDownWidthRichMarkupEditorControl.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -164,7 +165,7 @@
             0,
             0});
             this.numUpDownWidthRichMarkupEditorControl.Name = "numUpDownWidthRichMarkupEditorControl";
-            this.numUpDownWidthRichMarkupEditorControl.Size = new System.Drawing.Size(46, 20);
+            this.numUpDownWidthRichMarkupEditorControl.Size = new System.Drawing.Size(52, 20);
             this.numUpDownWidthRichMarkupEditorControl.TabIndex = 15;
             this.numUpDownWidthRichMarkupEditorControl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numUpDownWidthRichMarkupEditorControl.Value = new decimal(new int[] {
@@ -258,7 +259,7 @@
             // lbTextControlWidthUnits
             // 
             this.lbTextControlWidthUnits.AutoSize = true;
-            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(303, 482);
+            this.lbTextControlWidthUnits.Location = new System.Drawing.Point(112, 481);
             this.lbTextControlWidthUnits.Name = "lbTextControlWidthUnits";
             this.lbTextControlWidthUnits.Size = new System.Drawing.Size(18, 13);
             this.lbTextControlWidthUnits.TabIndex = 19;
@@ -353,14 +354,6 @@
             this.btnLoadMarkupTest8.UseVisualStyleBackColor = true;
             this.btnLoadMarkupTest8.Click += new System.EventHandler(this.btnLoadMarkupTest8_Click);
             // 
-            // markupRichtextControl
-            // 
-            this.markupRichtextControl.BackColor = System.Drawing.Color.White;
-            this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
-            this.markupRichtextControl.Name = "markupRichtextControl";
-            this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
-            this.markupRichtextControl.TabIndex = 25;
-            // 
             // btnLoadMarkupTest9
             // 
             this.btnLoadMarkupTest9.Location = new System.Drawing.Point(217, 35);
@@ -381,11 +374,35 @@
             this.btnLoadMarkupTest10.UseVisualStyleBackColor = true;
             this.btnLoadMarkupTest10.Click += new System.EventHandler(this.btnLoadMarkupTest10_Click);
             // 
+            // cbxWarpOn
+            // 
+            this.cbxWarpOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxWarpOn.FormattingEnabled = true;
+            this.cbxWarpOn.Items.AddRange(new object[] {
+            "Warp long text on Character",
+            "Warp long text on Word",
+            "Warp long text on Sentence"});
+            this.cbxWarpOn.Location = new System.Drawing.Point(156, 478);
+            this.cbxWarpOn.Name = "cbxWarpOn";
+            this.cbxWarpOn.Size = new System.Drawing.Size(181, 21);
+            this.cbxWarpOn.TabIndex = 31;
+            this.cbxWarpOn.SelectedIndexChanged += new System.EventHandler(this.cbxWarpOn_SelectedIndexChanged);
+            // 
+            // markupRichtextControl
+            // 
+            this.markupRichtextControl.BackColor = System.Drawing.Color.White;
+            this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
+            this.markupRichtextControl.Name = "markupRichtextControl";
+            this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
+            this.markupRichtextControl.TabIndex = 25;
+            this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
+            // 
             // FrmMainTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 599);
+            this.Controls.Add(this.cbxWarpOn);
             this.Controls.Add(this.btnLoadMarkupTest10);
             this.Controls.Add(this.btnLoadMarkupTest9);
             this.Controls.Add(this.btnLoadMarkupTest8);
@@ -446,6 +463,7 @@
         private System.Windows.Forms.Button btnLoadMarkupTest8;
         private System.Windows.Forms.Button btnLoadMarkupTest9;
         private System.Windows.Forms.Button btnLoadMarkupTest10;
+        private System.Windows.Forms.ComboBox cbxWarpOn;
     }
 }
 

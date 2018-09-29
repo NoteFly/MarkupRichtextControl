@@ -14,6 +14,7 @@ namespace TestMarkupRichTextControl
             InitializeComponent();
             this.numUpDownWidthRichMarkupEditorControl.Value = Convert.ToDecimal(this.markupRichtextControl.Width);
             this.markupparser = new MarkupToRichtextParser(this.markupRichtextControl);
+            this.cbxWarpOn.SelectedIndex = 0;
         }
 
         private void btnAddRichtext_Click(object sender, EventArgs e)
@@ -223,6 +224,23 @@ namespace TestMarkupRichTextControl
 
             sbtext.AppendLine();
             this.tbMarkup.Text = sbtext.ToString();
+        }
+
+        private void cbxWarpOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.cbxWarpOn.SelectedIndex)
+            {
+                case 0:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
+                    break;
+                case 1:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnWord;
+                    break;
+                case 2:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnSentence;
+                    break;
+            }
+            
         }
     }
 }
