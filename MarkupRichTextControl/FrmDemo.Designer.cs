@@ -391,6 +391,7 @@
             // markupRichtextControl
             // 
             this.markupRichtextControl.BackColor = System.Drawing.Color.White;
+            this.markupRichtextControl.hyperlinkUrlTooltip = true;
             this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
             this.markupRichtextControl.Name = "markupRichtextControl";
             this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);

@@ -8,10 +8,14 @@ internal partial class MarkupRichtextControl : UserControl
 {
     private List<RichTextPart> richtextparts = new List<RichTextPart>();
     private List<HyperlinkClickablePart> hyperlinkclickablepart = new List<HyperlinkClickablePart>();
+    private string[] protocolshyperlink = new string[] { "https", "http" };
     const int MARGIN_LINE_LEFT = 4;
     const int MARGIN_LINE_RIGHT = 4;
     const int MARGIN_LINE_TOP = 4;
     const int LINE_HEIGHT = 8;
+
+    private ToolTip tooltip = new ToolTip();
+    private const int DURATIONURLTOOLTIP = 2000;
 
     public enum WordWrapMode { OnCharacter, OnWord, OnSentence }
 
@@ -20,6 +24,11 @@ internal partial class MarkupRichtextControl : UserControl
     [Category("Appearance")]
     [Description("Set the text wordwrap modus. How the too long lines get wrapped.")]
     public WordWrapMode wordwrapmodus { get; set; }
+
+    [DisplayName("HyperlinkUrlTooltip")]
+    [Category("Appearance")]
+    [Description("Show a tooltip on hovering above a url in the markup control.")]
+    public bool hyperlinkUrlTooltip { get; set; }
 
     /// <summary>
     /// Add a new part of rich text to this control.
@@ -184,20 +193,25 @@ internal partial class MarkupRichtextControl : UserControl
                 mouseeventargs.Y <= hyperlinkClickablepart.location.Y + hyperlinkClickablepart.height)
             {
                 string url = hyperlinkClickablepart.richtextpart.Href;
-                if (url.StartsWith("https://") ||
-                    url.StartsWith("http://"))
+                foreach (string protocol in protocolshyperlink)
                 {
-                    
-                    System.Diagnostics.ProcessStartInfo procstartinfo = new System.Diagnostics.ProcessStartInfo(url);
-                    try
+                    if (url.StartsWith(protocol+"://"))
                     {
-                        System.Diagnostics.Process.Start(procstartinfo);
-                    }
-                    catch (System.ComponentModel.Win32Exception w32exc)
-                    {
-                        MessageBox.Show(w32exc.Message, "Error link");
+
+                        System.Diagnostics.ProcessStartInfo procstartinfo = new System.Diagnostics.ProcessStartInfo(url);
+                        try
+                        {
+                            System.Diagnostics.Process.Start(procstartinfo);
+                        }
+                        catch (System.ComponentModel.Win32Exception w32exc)
+                        {
+                            MessageBox.Show(w32exc.Message, "Error link");
+                        }
+
+                        break;
                     }
                 }
+
 
                 break;
             }
@@ -224,6 +238,30 @@ internal partial class MarkupRichtextControl : UserControl
         Cursor.Current = Cursors.Default;
         //base.OnMouseMove(e);
     }
+
+    protected override void OnMouseHover(EventArgs e)
+    {
+        tooltip.RemoveAll();
+        Point pointcursor = this.PointToClient(Cursor.Position);
+        foreach (HyperlinkClickablePart hyperlinkClickablepart in this.hyperlinkclickablepart)
+        {
+            if (pointcursor.X >= hyperlinkClickablepart.location.X &&
+                pointcursor.X <= hyperlinkClickablepart.location.X + hyperlinkClickablepart.width &&
+                pointcursor.Y >= hyperlinkClickablepart.location.Y &&
+                pointcursor.Y <= hyperlinkClickablepart.location.Y + hyperlinkClickablepart.height)
+            {
+                if (this.hyperlinkUrlTooltip)
+                {
+                    tooltip.Show(hyperlinkClickablepart.richtextpart.Href, this, pointcursor.X, pointcursor.Y + 24, DURATIONURLTOOLTIP);
+                }
+
+                break;
+            }
+        }
+
+        base.OnMouseHover(e);
+    }
+
 
     /// <summary>
     /// Calculate new point for next rich text part.
