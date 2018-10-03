@@ -110,7 +110,7 @@ public class MarkupTokenizer {
                         textlength = i - markuptoken.TextLeftPosition - markuptoken.Level;
                         String text = this.markup.Substring(markuptoken.TextLeftPosition, textlength);
                         markuptoken.Text = text;
-                        markuptoken.TextAppendNewLine = true; // test1
+                        markuptoken.TextAppendNewLine = true;
                         this.markuptokens.Add(markuptoken);
                         markuptoken = new MarkupToken();
                     }
@@ -118,8 +118,8 @@ public class MarkupTokenizer {
 
                 linenr++;
             }
-            else if (chr == '_' || chr == '*' || chr == '#' || chr == '-' || chr == '~' || chr == '`' ||
-                chr == '[' || chr == ']' || chr == '(' || chr == ')')
+            else if (chr == '_' || chr == '*' || chr == '#' || chr == '-' || chr == '~' || chr == '`' || 
+                     chr == '[' || chr == ']' || chr == '(' || chr == ')')
             {
                 if (markuptoken.CharLeft == '\0' && !markuptoken.Nomarkup)
                 {
@@ -189,7 +189,8 @@ public class MarkupTokenizer {
                     if (markuptoken.Level > 0 && markuptoken.Levelclosed < markuptoken.Level)
                     {
                         markuptoken.Levelclosed += 1;
-                    } else
+                    }
+                    else
                     {
                         bool inlinedash = false;
                         if (chr == '-')

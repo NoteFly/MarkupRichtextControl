@@ -118,6 +118,11 @@ internal partial class MarkupRichtextControl : UserControl
                     }
 
                     int textlengthpartofrichtextpart = posstartwrap - posstartpartofrichtextpart;
+                    if (textlengthpartofrichtextpart == 0)
+                    {
+                        continue;
+                    }
+
                     widthpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, textlengthpartofrichtextpart);
                     int widthcharpartoftextpart = richTextPart.GetWidthTextPart(paintEvtArgs, posstartpartofrichtextpart, n - posstartpartofrichtextpart);
                     int charlocx = location.X + widthcharpartoftextpart;

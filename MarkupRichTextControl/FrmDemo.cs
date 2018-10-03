@@ -98,6 +98,23 @@ namespace TestMarkupRichTextControl
             this.markupparser.ParseMarkup(this.tbMarkup.Text);
         }
 
+        private void cbxWarpOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.cbxWarpOn.SelectedIndex)
+            {
+                case 0:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
+                    break;
+                case 1:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnWord;
+                    break;
+                case 2:
+                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnSentence;
+                    break;
+            }
+
+        }
+
         /// <summary>
         /// Set test 1 markup text to tbMarkup. 
         /// This is just plain text over multiple lines.
@@ -226,21 +243,46 @@ namespace TestMarkupRichTextControl
             this.tbMarkup.Text = sbtext.ToString();
         }
 
-        private void cbxWarpOn_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Set test 11 markup text to tbMarkup.
+        /// Set Lorem ipsum text, good for testing word break setting on.
+        /// How good or not is break on word/sentence working.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadMarkupTest11_Click(object sender, EventArgs e)
         {
-            switch (this.cbxWarpOn.SelectedIndex)
-            {
-                case 0:
-                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
-                    break;
-                case 1:
-                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnWord;
-                    break;
-                case 2:
-                    this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnSentence;
-                    break;
-            }
-            
+            StringBuilder sbloremipsum = new StringBuilder("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. ");
+            sbloremipsum.Append("Aenean commodo ligula eget dolor. Aenean massa. Cum ");
+            sbloremipsum.Append("sociis natoque penatibus et magnis dis parturient montes, ");
+            sbloremipsum.Append("nascetur ridiculus mus. Donec quam felis, ultricies nec, ");
+            sbloremipsum.Append("pellentesque eu, pretium quis, sem. Nulla consequat massa ");
+            sbloremipsum.Append("quis enim. Donec pede justo, fringilla vel, aliquet nec, ");
+            sbloremipsum.Append("vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, ");
+            sbloremipsum.Append("venenatis vitae, justo. Nullam dictum felis eu pede mollis ");
+            sbloremipsum.Append("pretium. Integer tincidunt. Cras dapibus. Vivamus elementum ");
+            sbloremipsum.Append("semper nisi. Aenean vulputate eleifend tellus. Aenean leo ");
+            sbloremipsum.Append("ligula, porttitor eu, consequat vitae, eleifend ac, enim. ");
+            this.tbMarkup.Text = sbloremipsum.ToString();
+        }
+
+        /// <summary>
+        /// Set test 12 markup text to tbMarkup.
+        /// Text with all kind of characters and special character going to be mixed up with markup because they are not escaped.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadMarkupTest12_Click(object sender, EventArgs e)
+        {
+            StringBuilder sbazAZspec = new StringBuilder("abc def ghi jkl mno pqrs tuv wxyz ABC DEF GHI JKL MNO PQRS ");
+            sbazAZspec.AppendLine("TUV WXYZ !\"§ $% & / () =? *'<> #|; ²³~ @`´ ©«» ¤¼× {} abc ");
+            sbazAZspec.AppendLine("def ghi jkl mno pqrs tuv wxyz ABC DEF GHI JKL MNO PQRS ");
+            sbazAZspec.AppendLine("TUV WXYZ !\"§ $% & / () =? *'<> #|; ²³~ @`´ ©«» ¤¼× {} abc ");
+            sbazAZspec.AppendLine("def ghi jkl mno pqrs tuv wxyz ABC DEF GHI JKL MNO PQRS ");
+            sbazAZspec.AppendLine("TUV WXYZ !\"§ $% & / () =? *'<> #|; ²³~ @`´ ©«» ¤¼× {}abc ");
+            sbazAZspec.AppendLine("def ghi jkl mno pqrs tuv wxyz ABC DEF GHI JKL MNO PQRS ");
+            sbazAZspec.AppendLine("TUV WXYZ !\"§ $% & / () ");
+            this.tbMarkup.Text = sbazAZspec.ToString();
         }
     }
 }
