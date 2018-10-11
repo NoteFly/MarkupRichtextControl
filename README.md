@@ -17,7 +17,10 @@ Not supported are:
 
 ## Questions and Answers
 ###### Why is this control created?
-It is created to test an implementation a .NET / C# user control that uses the Markup language to display rich text.
+It is created to test an implementation a .NET / C# UserControl that uses the Markup language to display rich text.
+###### Does this control also parse markup to HTML?
+No, it not the goal of this project.
+Markup is parsed to it's own UserControl just to display rich text.
 ###### Can this control also be used as a markup language WYSIWYG editor?
 Yes, that could be possible if extended. But the current implementation of the markup language is limited. 
 Some features of the markup language are not working, like tables and images.
