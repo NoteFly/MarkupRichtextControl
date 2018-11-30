@@ -1,6 +1,6 @@
 # MarkupRichTextControl
 MarkupRichTextControl is a UserControl for .NET to display rich text from a markup formatted code.
-The goal of this project is to build a limited markup implementation that can be used by the NoteFly note taking application for displaying notes with the need for a HTML engine.
+The goal of this project is to build a limited markup implementation that can be used by the NoteFly note taking application for displaying notes without the need for a HTML engine.
 The limited Markup implementation of MarkupRichTextControl can support:
 - headings created by underscores;
 - bold texts;
