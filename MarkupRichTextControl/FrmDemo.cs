@@ -164,13 +164,13 @@ namespace TestMarkupRichTextControl
 
         /// <summary>
         /// Set test 5 markup text to tbMarkup.
-        /// For testing striketough markup.
+        /// For testing strike out text markup.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnLoadMarkupTest5_Click(object sender, EventArgs e)
         {
-            this.tbMarkup.Text = "strikethrough test ~failed~\r\nTest";
+            this.tbMarkup.Text = "Strike out text test ~failed~\r\nTest";
         }
 
         /// <summary>

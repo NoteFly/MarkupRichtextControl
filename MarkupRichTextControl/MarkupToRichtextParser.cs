@@ -250,6 +250,8 @@ partial class MarkupToRichtextParser
 {
     private int fontsizedefault = 12;
 
+    private string fontfamily = "Arial";
+
     private int[] headsfontsizes = new int[] { 32, 24, 20, 18, 16, 14 };
 
     private MarkupRichtextControl markuptextcontrol;
@@ -285,14 +287,22 @@ partial class MarkupToRichtextParser
                     case '#':
                         // head
                         int headlevel = markuptokens[i].Level;
-                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.headsfontsizes[headlevel], solidbrushTextcolorDefault, FontStyle.Bold);
+                        richtextpart = new RichTextPart(markuptokens[i].Text,
+                                                        this.fontfamily,
+                                                        this.headsfontsizes[headlevel],
+                                                        solidbrushTextcolorDefault,
+                                                        FontStyle.Bold);
                         richtextpart.AppendNewLine = true;
                         this.markuptextcontrol.Append(richtextpart);
                         previous_markuptokon_hyperlinktext = false;
                         break;
                     case '-':
                         // list
-                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Regular);
+                        richtextpart = new RichTextPart(markuptokens[i].Text,
+                                                        this.fontfamily,
+                                                        this.fontsizedefault,
+                                                        solidbrushTextcolorDefault,
+                                                        FontStyle.Regular);
                         richtextpart.PrependBullit = true;
                         richtextpart.AppendNewLine = true;
                         this.markuptextcontrol.Append(richtextpart);
@@ -312,13 +322,21 @@ partial class MarkupToRichtextParser
                             emphasisfontstyle += (int)FontStyle.Italic;
                         }
 
-                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, (FontStyle)emphasisfontstyle);
+                        richtextpart = new RichTextPart(markuptokens[i].Text,
+                                                        this.fontfamily,
+                                                        this.fontsizedefault,
+                                                        solidbrushTextcolorDefault,
+                                                        (FontStyle)emphasisfontstyle);
                         this.markuptextcontrol.Append(richtextpart);
                         previous_markuptokon_hyperlinktext = false;
                         break;
                     case '~':
                         // strikethrough
-                        richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Strikeout);
+                        richtextpart = new RichTextPart(markuptokens[i].Text,
+                                                        this.fontfamily,
+                                                        this.fontsizedefault,
+                                                        solidbrushTextcolorDefault,
+                                                        FontStyle.Strikeout);
                         this.markuptextcontrol.Append(richtextpart);
                         previous_markuptokon_hyperlinktext = false;
                         break;
@@ -332,7 +350,11 @@ partial class MarkupToRichtextParser
                         {
                             FontStyle fontsylehyperlink = FontStyle.Underline;
                             SolidBrush solidbrushHyperlink = new SolidBrush(Color.Blue);
-                            richtextpart = new RichTextPart(markuptokens[i - 1].Text, "Arial", this.fontsizedefault, solidbrushHyperlink, fontsylehyperlink);
+                            richtextpart = new RichTextPart(markuptokens[i - 1].Text,
+                                                            this.fontfamily,
+                                                            this.fontsizedefault,
+                                                            solidbrushHyperlink,
+                                                            fontsylehyperlink);
                             richtextpart.Href = markuptokens[i].Text;
                             this.markuptextcontrol.Append(richtextpart);
                         }
@@ -340,14 +362,17 @@ partial class MarkupToRichtextParser
                         previous_markuptokon_hyperlinktext = false;
                         break;
                     case '`':
-                        // literally and code highlighting
-                        // TODO
+                        // TODO: literally and code highlighting
                         previous_markuptokon_hyperlinktext = false;
                         break;
                     default:
                         if (markuptokens[i].Nomarkup)
                         {
-                            richtextpart = new RichTextPart(markuptokens[i].Text, "Arial", this.fontsizedefault, solidbrushTextcolorDefault, FontStyle.Regular);
+                            richtextpart = new RichTextPart(markuptokens[i].Text,
+                                                            this.fontfamily,
+                                                            this.fontsizedefault,
+                                                            solidbrushTextcolorDefault,
+                                                            FontStyle.Regular);
                             richtextpart.AppendNewLine = markuptokens[i].TextAppendNewLine;
                             this.markuptextcontrol.Append(richtextpart);
                         }

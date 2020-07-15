@@ -13,10 +13,10 @@ public class RichTextPart
     private string href = null;
     private bool isline = false;
 
-    public RichTextPart(string text, string lettertype, int fontsize, SolidBrush textcolor, FontStyle fontstyle)
-	{
+    public RichTextPart(string text, string fontfamily, int fontsize, SolidBrush textcolor, FontStyle fontstyle)
+    {
         this.text = text;
-        this.font = new Font(lettertype, fontsize, fontstyle);
+        this.font = new Font(fontfamily, fontsize, fontstyle);
         this.textcolor = textcolor;
     }
 
@@ -37,7 +37,7 @@ public class RichTextPart
             this.text = value;
         }
     }
-    
+
     public string Href { get; set; }
     public int Fontsize { get; }
     public int Color { get; }

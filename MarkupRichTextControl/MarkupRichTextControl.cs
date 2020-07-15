@@ -225,25 +225,6 @@ internal partial class MarkupRichtextControl : UserControl
         base.OnClick(e);
     }
 
-    protected override void OnMouseMove(MouseEventArgs e)
-    {
-        Point pointcursor = this.PointToClient(Cursor.Position);
-        foreach (HyperlinkClickablePart hyperlinkClickablepart in this.hyperlinkclickablepart)
-        {
-            if (pointcursor.X >= hyperlinkClickablepart.location.X &&
-                pointcursor.X <= hyperlinkClickablepart.location.X + hyperlinkClickablepart.width &&
-                pointcursor.Y >= hyperlinkClickablepart.location.Y &&
-                pointcursor.Y <= hyperlinkClickablepart.location.Y + hyperlinkClickablepart.height)
-            {
-                Cursor.Current = Cursors.Hand;
-                return;
-            } 
-        }
-
-        Cursor.Current = Cursors.Default;
-        //base.OnMouseMove(e);
-    }
-
     protected override void OnMouseHover(EventArgs e)
     {
         tooltip.RemoveAll();

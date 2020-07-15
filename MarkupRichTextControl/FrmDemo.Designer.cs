@@ -59,9 +59,9 @@
             this.btnLoadMarkupTest9 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest10 = new System.Windows.Forms.Button();
             this.cbxWarpOn = new System.Windows.Forms.ComboBox();
-            this.markupRichtextControl = new MarkupRichtextControl();
             this.btnLoadMarkupTest11 = new System.Windows.Forms.Button();
             this.btnLoadMarkupTest12 = new System.Windows.Forms.Button();
+            this.markupRichtextControl = new MarkupRichtextControl();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownWidthRichMarkupEditorControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -117,7 +117,7 @@
             // chxBold
             // 
             this.chxBold.AutoSize = true;
-            this.chxBold.Location = new System.Drawing.Point(552, 27);
+            this.chxBold.Location = new System.Drawing.Point(553, 27);
             this.chxBold.Name = "chxBold";
             this.chxBold.Size = new System.Drawing.Size(47, 17);
             this.chxBold.TabIndex = 11;
@@ -137,7 +137,7 @@
             // chxUnderline
             // 
             this.chxUnderline.AutoSize = true;
-            this.chxUnderline.Location = new System.Drawing.Point(464, 51);
+            this.chxUnderline.Location = new System.Drawing.Point(476, 51);
             this.chxUnderline.Name = "chxUnderline";
             this.chxUnderline.Size = new System.Drawing.Size(71, 17);
             this.chxUnderline.TabIndex = 13;
@@ -223,19 +223,19 @@
             this.chxNewLine.AutoSize = true;
             this.chxNewLine.Location = new System.Drawing.Point(372, 26);
             this.chxNewLine.Name = "chxNewLine";
-            this.chxNewLine.Size = new System.Drawing.Size(86, 17);
+            this.chxNewLine.Size = new System.Drawing.Size(98, 17);
             this.chxNewLine.TabIndex = 20;
-            this.chxNewLine.Text = "add new line";
+            this.chxNewLine.Text = "append CR+LF";
             this.chxNewLine.UseVisualStyleBackColor = true;
             // 
             // chxStrikeout
             // 
             this.chxStrikeout.AutoSize = true;
-            this.chxStrikeout.Location = new System.Drawing.Point(464, 27);
+            this.chxStrikeout.Location = new System.Drawing.Point(476, 27);
             this.chxStrikeout.Name = "chxStrikeout";
-            this.chxStrikeout.Size = new System.Drawing.Size(87, 17);
+            this.chxStrikeout.Size = new System.Drawing.Size(69, 17);
             this.chxStrikeout.TabIndex = 18;
-            this.chxStrikeout.Text = "strikethrough";
+            this.chxStrikeout.Text = "strike out";
             this.chxStrikeout.UseVisualStyleBackColor = true;
             // 
             // tbHyperlink
@@ -390,16 +390,6 @@
             this.cbxWarpOn.TabIndex = 31;
             this.cbxWarpOn.SelectedIndexChanged += new System.EventHandler(this.cbxWarpOn_SelectedIndexChanged);
             // 
-            // markupRichtextControl
-            // 
-            this.markupRichtextControl.BackColor = System.Drawing.Color.White;
-            this.markupRichtextControl.hyperlinkUrlTooltip = true;
-            this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
-            this.markupRichtextControl.Name = "markupRichtextControl";
-            this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
-            this.markupRichtextControl.TabIndex = 25;
-            this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
-            // 
             // btnLoadMarkupTest11
             // 
             this.btnLoadMarkupTest11.Location = new System.Drawing.Point(255, 35);
@@ -419,6 +409,16 @@
             this.btnLoadMarkupTest12.Text = "#12";
             this.btnLoadMarkupTest12.UseVisualStyleBackColor = true;
             this.btnLoadMarkupTest12.Click += new System.EventHandler(this.btnLoadMarkupTest12_Click);
+            // 
+            // markupRichtextControl
+            // 
+            this.markupRichtextControl.BackColor = System.Drawing.Color.White;
+            this.markupRichtextControl.hyperlinkUrlTooltip = false;
+            this.markupRichtextControl.Location = new System.Drawing.Point(343, 12);
+            this.markupRichtextControl.Name = "markupRichtextControl";
+            this.markupRichtextControl.Size = new System.Drawing.Size(400, 494);
+            this.markupRichtextControl.TabIndex = 25;
+            this.markupRichtextControl.wordwrapmodus = MarkupRichtextControl.WordWrapMode.OnCharacter;
             // 
             // FrmMainTest
             // 
